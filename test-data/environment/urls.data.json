@@ -1,0 +1,21 @@
+{
+    "uat": {
+        "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    },
+
+    "test": {
+        "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    },
+
+    "dev": {
+        "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    },
+
+    "staging": {
+        "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+
+    }
+
+
+
+}

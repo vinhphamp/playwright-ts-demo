@@ -7,26 +7,41 @@ export class LoginPage {
     readonly loginButton: Locator;
     readonly dashboardHome: Locator;
     readonly errorMessage: Locator;
+    readonly requireMessageUsername: Locator;
+    readonly requireMessagePassword: Locator;
 
     constructor(page: Page) {
         this.page = page;
         
-        this.usernameInput = this.page.getByPlaceholder('Username');
-        this.passwordInput = page.getByPlaceholder('Password');
-        // this.usernameInput = page.getByRole('textbox', { name: 'username' });
-        // this.passwordInput = page.getByRole('textbox', { name: 'password' });
+        //this.usernameInput = page.getByPlaceholder('Username');        
+        //this.passwordInput = page.getByPlaceholder('Password');
+
+        // this.usernameInput = page.getByLabel('Username');
+        // this.passwordInput = page.getByLabel('Password');
+
+        this.usernameInput = page.locator('[name="username"]');
+        this.passwordInput = page.locator('[name="password"]');
+
         this.loginButton = page.getByRole('button', { name: /Login/i });
 
         this.dashboardHome = page.locator('.oxd-main-menu-item--name', { hasText: 'Dashboard' });
-        // this.dashboardHome = page.getByText(/dashboard/i);        
-        // this.dashboardHome = page.getByRole('link', { name: /dashboard/i });
-        // this.dashboardHome = page.getByText('Dashboard', { exact: true });
-        
-        this.errorMessage = page.getByText('Invalid credentials', { exact: true });
+
+        this.errorMessage = page.getByText('Invalid credentials', { exact: true });  
+
+        this.requireMessageUsername = page
+            .locator('.oxd-input-group', {has: this.usernameInput})
+            .locator('.oxd-input-group__message')
+            .filter({hasText: 'Required'});
+
+        this.requireMessagePassword = page
+            .locator('.oxd-input-group', {has: this.passwordInput})
+            .locator('.oxd-input-group__message')
+            .filter({hasText: 'Required'});
+
     }
 
-    async goto() {
-        await this.page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    async goto(url: string) {
+        await this.page.goto(url);
         await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
     }
 
@@ -42,6 +57,12 @@ export class LoginPage {
 
     async assertLoginNotSuccess() {
         await expect(this.errorMessage).toBeVisible({ timeout: 10_000 });
+    }
+
+    async assertLoginEmptyAccount() {        
+        await this.loginButton.click();
+        await expect(this.requireMessageUsername).toBeVisible({timeout: 10_000});
+        await expect(this.requireMessagePassword).toBeVisible({timeout: 10_000});
     }
 
 
