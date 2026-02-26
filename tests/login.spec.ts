@@ -32,7 +32,7 @@ test.describe('Login Checking', () => {
 
     });
 
-    test.only('Login with empty username/password', async ({page})=> {
+    test('Login with empty username/password', async ({page})=> {
         await login.assertLoginEmptyAccount();
         console.log("Login with required fields")
         // const messageUsername = await login.requireMessageUsername.textContent();
