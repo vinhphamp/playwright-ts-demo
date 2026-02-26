@@ -2,6 +2,8 @@ import { Page, Locator, expect } from '@playwright/test';
 
 export class LoginPage {
     readonly page: Page;
+    readonly usernameGroup: Locator;
+    readonly passwordGroup: Locator;
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
@@ -22,26 +24,31 @@ export class LoginPage {
         this.usernameInput = page.locator('[name="username"]');
         this.passwordInput = page.locator('[name="password"]');
 
+        this.usernameGroup = page.locator('.oxd-input-group:has([name="username"])');
+        this.passwordGroup = page.locator('.oxd-input-group:has([name="password"])');
+        const errorSelector = ':is(.oxd-input-group__message, .oxd-input-field-error-message)';
+        
+        this.requireMessageUsername = this.usernameGroup
+            .locator(errorSelector)
+            .filter({hasText: 'Required'});
+
+        this.requireMessagePassword = this.passwordGroup
+            .locator(errorSelector)
+            .filter({hasText: 'Required'});
+
         this.loginButton = page.getByRole('button', { name: /Login/i });
 
         this.dashboardHome = page.locator('.oxd-main-menu-item--name', { hasText: 'Dashboard' });
 
         this.errorMessage = page.getByText('Invalid credentials', { exact: true });  
 
-        this.requireMessageUsername = page
-            .locator('.oxd-input-group', {has: this.usernameInput})
-            .locator('.oxd-input-group__message')
-            .filter({hasText: 'Required'});
 
-        this.requireMessagePassword = page
-            .locator('.oxd-input-group', {has: this.passwordInput})
-            .locator('.oxd-input-group__message')
-            .filter({hasText: 'Required'});
 
     }
 
     async goto(url: string) {
         await this.page.goto(url);
+        await expect(this.page).toHaveURL(/\/auth\/login$/, { timeout: 10_000 });
         await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
     }
 
