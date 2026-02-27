@@ -8,7 +8,6 @@ export class LoginPage {
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly dashboardHome: Locator;
-    readonly errorMessage: Locator;
     readonly requireMessageUsername: Locator;
     readonly requireMessagePassword: Locator;
     readonly alert: Locator;
@@ -35,15 +34,9 @@ export class LoginPage {
         this.loginButton = page.getByRole('button', { name: /Login/i });
 
         this.dashboardHome = page.locator('.oxd-main-menu-item--name', { hasText: 'Dashboard' });
-
-        // this.errorMessage = page.getByText('Invalid credentials', { exact: true });
-        
+      
         this.alert = page.getByRole('alert');
         
-
-
-
-
     }
 
     async goto(url: string) {
@@ -62,10 +55,6 @@ export class LoginPage {
         await expect(this.dashboardHome).toBeVisible({ timeout: 10_000 });
     }
 
-    // async assertLoginNotSuccess() {
-    //     await expect(this.errorMessage).toBeVisible({ timeout: 10_000 });
-    // }
-
     async assertLoginNotSuccess() {
         await expect(this.alert).toBeVisible({ timeout: 10_000 });
         await expect(this.alert).toContainText('Invalid credentials');
@@ -77,5 +66,5 @@ export class LoginPage {
         await expect(this.requireMessagePassword).toBeVisible({timeout: 10_000});
     }
 
-
 }
+
