@@ -11,16 +11,12 @@ export class LoginPage {
     readonly errorMessage: Locator;
     readonly requireMessageUsername: Locator;
     readonly requireMessagePassword: Locator;
+    readonly alert: Locator;
+    
 
     constructor(page: Page) {
         this.page = page;
         
-        //this.usernameInput = page.getByPlaceholder('Username');        
-        //this.passwordInput = page.getByPlaceholder('Password');
-
-        // this.usernameInput = page.getByLabel('Username');
-        // this.passwordInput = page.getByLabel('Password');
-
         this.usernameInput = page.locator('[name="username"]');
         this.passwordInput = page.locator('[name="password"]');
 
@@ -40,7 +36,11 @@ export class LoginPage {
 
         this.dashboardHome = page.locator('.oxd-main-menu-item--name', { hasText: 'Dashboard' });
 
-        this.errorMessage = page.getByText('Invalid credentials', { exact: true });  
+        // this.errorMessage = page.getByText('Invalid credentials', { exact: true });
+        
+        this.alert = page.getByRole('alert');
+        
+
 
 
 
@@ -62,8 +62,13 @@ export class LoginPage {
         await expect(this.dashboardHome).toBeVisible({ timeout: 10_000 });
     }
 
+    // async assertLoginNotSuccess() {
+    //     await expect(this.errorMessage).toBeVisible({ timeout: 10_000 });
+    // }
+
     async assertLoginNotSuccess() {
-        await expect(this.errorMessage).toBeVisible({ timeout: 10_000 });
+        await expect(this.alert).toBeVisible({ timeout: 10_000 });
+        await expect(this.alert).toContainText('Invalid credentials');
     }
 
     async assertLoginEmptyAccount() {        
