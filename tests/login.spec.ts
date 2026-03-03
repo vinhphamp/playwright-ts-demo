@@ -1,5 +1,6 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
+import { UIHelper } from '../helpers/uiHelper';
 import loginData from '../test-data/users/login.data.json';
 import envData from '../test-data/environment/urls.data.json';
 
@@ -9,7 +10,9 @@ test.describe('Login Checking', () => {
     test.beforeEach(async ({page}) => {
         login = new LoginPage(page);
         await login.goto(envData.test.url);
+        await UIHelper.wait(1000);
         console.log("Load page successfully");
+
     });
 
     test('Login Success', async ({ page }) => {
