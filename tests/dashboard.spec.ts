@@ -17,7 +17,7 @@ test.describe ('Dashboard Checking', () => {
 
     });
 
-    test('Verify the UI of dashboard page', async ({page}) => {
+    test.only('Verify the UI of dashboard page', async ({page}) => {
         await dashboard.checkDashboardUI();
 
 
