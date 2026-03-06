@@ -15,7 +15,7 @@ test.describe('Login Checking', () => {
 
     });
 
-    test('Login Success', async ({ page }) => {
+    test.only('Login Success', async ({ page }) => {
         await login.login(loginData.validUser.username, loginData.validUser.password);
         await login.assertLoginSuccess();
         console.log("Login Successfully");
