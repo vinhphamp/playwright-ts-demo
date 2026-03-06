@@ -1,13 +1,17 @@
-import { Page } from '@playwright/test';
 import { test, expect } from '../fixtures/baseFixture';
 import { DashboardPage } from '../pages/dashboardPage';
 
 test.describe('Checking Dashboard Page', () => {
-    test('Verify the UI of dashboard page', async ({ loggedInPage }) => {
-        const dashboard = new DashboardPage(loggedInPage);
+    let dashboard: DashboardPage;
+
+    test.beforeEach(async ({ loggedInPage }) => {
+        dashboard = new DashboardPage(loggedInPage);
+
+    });
+
+    test('Verify the UI of dashboard page', async () => {
         await dashboard.checkDashboardUI();
 
-    })       
+    })      
     
-
 });
