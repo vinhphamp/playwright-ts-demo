@@ -46,7 +46,6 @@ export class DashboardPage {
         await expect(this.adminLink).toBeVisible();
         await expect(this.pimLink).toBeVisible();
         await expect(this.leaveLink).toBeVisible();
-        await expect(this.leaveLink).toBeVisible();
         await expect(this.timeLink).toBeVisible();
         await expect(this.recruitmentLink).toBeVisible();
         await expect(this.myinfoLink).toBeVisible();
