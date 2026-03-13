@@ -1,0 +1,2 @@
+Load dashboard page successfully
+Check UI completed!

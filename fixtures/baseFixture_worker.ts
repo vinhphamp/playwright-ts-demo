@@ -7,7 +7,7 @@ type MyFixtures = {
     loggedInPage: Page;
 };
 
-
+/*
 // scope: 'test' (mặc định, login mỗi test)
 export const test = base.extend<MyFixtures>({
     loggedInPage: async ({ page }, use) => {
@@ -17,12 +17,13 @@ export const test = base.extend<MyFixtures>({
         await use(page);
     }
 }); 
+*/
 
-/*
 // Nếu muốn scope: 'worker', bạn viết như sau:
 export const workerTest = base.extend<MyFixtures>({
   loggedInPage: [
     async ({ browser }, use) => {
+      console.log("LOGIN RUNNING...");
       const context = await browser.newContext();
       const page = await context.newPage();
       
@@ -36,6 +37,6 @@ export const workerTest = base.extend<MyFixtures>({
     { scope: 'worker' } as any 
   ]
 });
-*/
+
 
 export const expect = baseExpect;
