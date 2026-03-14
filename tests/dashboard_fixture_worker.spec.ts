@@ -3,6 +3,22 @@ import { DashboardPage } from '../pages/dashboardPage';
 
 
 test.describe('Checking Dashboard Page', () => {
+    
+    test('Verify the UI of dashboard page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.checkDashboardUI();
+
+    })
+    
+    test('Verify link Admin link to Admin page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.clickAdminLink();
+    })
+    
+});
+
+/*
+test.describe('Checking Dashboard Page', () => {
     let dashboard: DashboardPage;
 
     test.beforeEach(async ({ loggedInPage }) => {
@@ -20,3 +36,5 @@ test.describe('Checking Dashboard Page', () => {
     })
     
 });
+*/
+
