@@ -18,7 +18,7 @@ test('GET post detail - first lesson', async ({ request }) => {
 
 });
 
-test('POST create post', async ({ request }) => {
+test.only('POST create post', async ({ request }) => {
     const response = await request.post('https://jsonplaceholder.typicode.com/posts',
         {
             data: {
@@ -32,6 +32,8 @@ test('POST create post', async ({ request }) => {
     expect(response.status()).toBe(201);
 
     const body = await response.json();
+
+    console.log(response.status());
 
     console.log(body);
 
