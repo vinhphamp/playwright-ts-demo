@@ -1,16 +1,48 @@
 import { test, expect } from '@playwright/test';
 import { request } from 'node:http';
 
-test.describe.parallel("API Testing", () => {
+test.describe.parallel("API Testing", () => {    
 const baseURL = 'https://reqres.in/api'
-    test("Simple API Testing - Assert response status", async ({ request }) => {
-        const response = request.get(`${baseURL}/users/2`);
-        expect((await response).status()).toBe(200);
+
+    test("Simple API Testing - Get user list | Assert response status", async ({ request }) => {
+        const response = await request.get(`${baseURL}/users/2`, {
+            headers: {
+                'x-api-key': 'pub_4f2c573101070357dc1f6275705d770cb66209937b749d23227c38d3e290317b',
+                // 'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'User-Agent': 'reqres-qa-tests/1.0',
+            },
+        });
+        
+        expect(response.status()).toBe(200);
+        const body = await response.json();
+        console.log('View list of users')
+        console.log(body);
+
     });
 
-    test('Simple API Testing  - Assert ForBidden status code', async ({ request }) => {
-        const response = request.get(`${baseURL}/users/200`);
-        expect((await response).status()).toBe(403)
-    });
+    test('Simple API Testing  - Create new user | Assert status code', async ({ request }) => {
+        const response = await request.post(`${baseURL}/users`, {
+            headers: {
+                'x-api-key': 'pub_4f2c573101070357dc1f6275705d770cb66209937b749d23227c38d3e290317b',
+                'Content-Type': 'application/json',
+                'User-Agent': 'reqres-qa-tests/1.0',
+            },
+            data: {
+                name: 'Phạm Phú Vinh',
+                job: 'Quality Control Engineer',
+            },
+        });
+
+        expect(response.status()).toBe(201);
+        const body = await response.json();
+        expect(body).toMatchObject({
+            name: 'Phạm Phú Vinh',
+            job: 'Quality Control Engineer',
+        });
+        console.log('Creat new user success');
+        console.log(body);
+
+    });     
 
 });
