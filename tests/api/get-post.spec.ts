@@ -18,7 +18,7 @@ test('GET post detail - first lesson', async ({ request }) => {
 
 });
 
-test.only('POST create post', async ({ request }) => {
+test('POST create post', async ({ request }) => {
     const response = await request.post('https://jsonplaceholder.typicode.com/posts',
         {
             data: {

@@ -1,2 +1,0 @@
-[Function: status]
-{ title: 'Playwright', body: 'API Testing', userId: 1, id: 101 }
