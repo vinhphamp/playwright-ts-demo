@@ -35,7 +35,10 @@ const baseURL = 'https://reqres.in/api'
 
         const responseBody = JSON.parse(await response.text());
         expect(responseBody.data.id).toBe(1);
-        expect(responseBody.data.last_name).toBe('Bluth')
+        expect(responseBody.data.last_name).toBe('Bluth');
+        expect(responseBody.data.first_name).toContain('George');
+        expect(responseBody.data.email).toBeTruthy;
+        expect(responseBody.support.url).toContain('https://benhowdle.im');
         console.log(responseBody);
     });
 
