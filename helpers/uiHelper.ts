@@ -1,15 +1,15 @@
-import { Locator } from '@playwright/test';
+import { Locator, expect } from '@playwright/test';
 
 export class UIHelper {
 
-  static async wait(ms: number) {  
-    return new Promise(resolve => setTimeout(resolve, ms));
-  } //await UIHelper.wait(2000);
-  
-  static async waitAndClick(locator: Locator, timeout: number = 5000) {
-    await locator.waitFor({ state: 'visible', timeout });
+  static async click(locator: Locator) {  //example: await UIHelper.click(this.loginButton);
+    await expect(locator).toBeVisible();
     await locator.click();
   }
 
+  static async fill(locator: Locator, value: string) {  //example: await UIHelper.fill(this.passwordInput, password);
+    await expect(locator).toBeVisible();
+    await locator.fill(value);
+  }
 
 }

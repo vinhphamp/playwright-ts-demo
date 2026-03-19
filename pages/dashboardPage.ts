@@ -63,10 +63,6 @@ export class DashboardPage {
 
     }  
 
-    async clickAdminLink () {
-        await this.adminLink.click();
-    }
-
     async navigatetoAdminPage () {
         await this.adminLink.click();
         

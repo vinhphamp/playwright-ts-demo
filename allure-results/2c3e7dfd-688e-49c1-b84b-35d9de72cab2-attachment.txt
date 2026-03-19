@@ -1,0 +1,2 @@
+Login success !
+wait for User Manager dropdown is appeared
