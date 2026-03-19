@@ -21,7 +21,30 @@ const baseURL = 'https://reqres.in/api'
 
     });
 
-    test('POST method  - Create new user | Assert status code', async ({ request }) => {
+
+    test('Simple API Testing - JSON Parsing | Get User Details', async ({ request }) => {
+        const response = await request.get(`${baseURL}/users/1`, 
+        {
+            headers: {
+                'x-api-key': 'pub_4f2c573101070357dc1f6275705d770cb66209937b749d23227c38d3e290317b',
+                'Content-Type': 'application/json',
+                'User-Agent': 'reqres-qa-tests/1.0',
+
+            }
+        });
+        expect(response.status()).toBe(200);
+
+        const responseBody = JSON.parse(await response.text());
+        expect(responseBody.data.id).toBe(1);
+        expect(responseBody.data.last_name).toBe('Bluth');
+        expect(responseBody.data.first_name).toContain('George');
+        expect(responseBody.data.email).toBeTruthy;
+        expect(responseBody.support.url).toContain('https://benhowdle.im');
+        console.log(responseBody);
+    });
+
+    test('Simple API Testing  - Create new user | Assert status code', async ({ request }) => {
+
         const response = await request.post(`${baseURL}/users`, {
             headers: {
                 'x-api-key': 'pub_4f2c573101070357dc1f6275705d770cb66209937b749d23227c38d3e290317b',
@@ -42,6 +65,7 @@ const baseURL = 'https://reqres.in/api'
         });
         console.log('Creat new user success');
         console.log(body);
+
 
     });
     
@@ -108,6 +132,6 @@ const baseURL = 'https://reqres.in/api'
 
         const responseBody = await response.json();
         console.log(responseBody.error);    
-    });
+    });  
 
 });
