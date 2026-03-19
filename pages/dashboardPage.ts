@@ -45,7 +45,6 @@ export class DashboardPage {
     async checkDashboardUI () {
         // await expect(this.searchSidebar).toBeVisible({timeout: 10_000});
         await expect(this.collapseLeftIcon).toBeVisible();
-        await UIHelper.wait(5000);
         await this.collapseLeftIcon.click();
         await this.collapseRightIcon.click();
         await expect(this.searchSidebar).toBeVisible();
