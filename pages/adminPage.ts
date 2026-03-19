@@ -1,0 +1,33 @@
+import { Page, Locator, expect } from "@playwright/test";
+import { UIHelper } from "../helpers/uiHelper";
+import { DashboardPage } from "./dashboardPage";
+import { listen } from "node:quic";
+
+export class AdminPage {
+    readonly page: Page;
+    readonly usermanagerDropdown: Locator;
+    readonly jobDropdown: Locator;
+    readonly organizationDropdown: Locator;
+
+    constructor(page: Page) {
+        this.page = page;
+        // this.usermanagerDropdown = page.locator('span.oxd-topbar-body-nav-tab-item', { hasText: 'User Management'});
+        this.usermanagerDropdown = page.getByRole('menuitem', { name: 'User Management'});
+        this.jobDropdown = page.getByRole('menuitem', { name: 'Job'});
+        this.organizationDropdown = page.getByRole('listitem', {name: 'Organization'});
+    }
+
+    async navigateToUserManagementPage () {
+        
+        this.usermanagerDropdown.click();
+    }
+
+    async navigateToJobPage () {
+        this.jobDropdown.click();
+    }
+
+    async navigateToOrganizationPage () {
+        this.organizationDropdown.click();
+    }
+
+}

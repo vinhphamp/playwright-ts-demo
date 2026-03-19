@@ -15,6 +15,9 @@ export class DashboardPage {
     readonly performanceLink: Locator;
     readonly dashboardLink: Locator;
     readonly directoryLink: Locator;
+    readonly maintenanceLink: Locator;
+    readonly claimLink: Locator;
+    readonly buzzLink: Locator;
 
 
 
@@ -33,6 +36,9 @@ export class DashboardPage {
         this.performanceLink = page.getByRole('link', { name: 'Performance'});
         this.dashboardLink = page.getByRole('link', { name: 'Dashboard'});
         this.directoryLink = page.getByRole('link', { name: 'Directory'});
+        this.maintenanceLink = page.getByRole('link', { name: 'Maintenance'});
+        this.claimLink = page.getByRole('link', { name: 'Claim'});
+        this.buzzLink = page.getByRole('link', { name: 'Buzz'});
 
     }
 
@@ -59,6 +65,11 @@ export class DashboardPage {
 
     async clickAdminLink () {
         await this.adminLink.click();
+    }
+
+    async navigatetoAdminPage () {
+        await this.adminLink.click();
+        
     }
     
 
