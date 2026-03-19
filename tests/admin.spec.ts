@@ -10,6 +10,7 @@ test('should open Admin page', async ({ loggedInPage }) => {
 
   await test.step('Navigate to Admin page', async () => {
     await dashboard.navigatetoAdminPage();
+    await expect(loggedInPage).toHaveURL(/admin/);
   });
 
   await test.step('Verify Admin UI', async () => {
