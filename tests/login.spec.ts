@@ -10,7 +10,6 @@ test.describe('Login Checking', () => {
     test.beforeEach(async ({page}) => {
         login = new LoginPage(page);
         await login.goto(envData.test.url);
-        await UIHelper.wait(1000);
         console.log("Load page successfully");
 
     });

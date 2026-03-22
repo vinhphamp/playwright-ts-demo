@@ -12,12 +12,14 @@ test.describe('Checking Dashboard Page', () => {
     
     test('Verify link Admin link to Admin page', async ({loggedInPage}) => {
         const dashboard = new DashboardPage(loggedInPage);
-        await dashboard.clickAdminLink();
+        await dashboard.navigatetoAdminPage();
     })
     
 });
 
 /*
+// using beforeEach step
+
 test.describe('Checking Dashboard Page', () => {
     let dashboard: DashboardPage;
 
