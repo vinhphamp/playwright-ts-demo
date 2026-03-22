@@ -1,0 +1,5 @@
+Login success !
+Clicked: getByRole('link', { name: 'Admin' })
+Navigate to Admin page
+wait for User Manager dropdown is appeared
+Loaded User menuitem

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
-import { UIHelper } from '../helpers/uiHelper';
+import { BasePage } from '../pages/basePage';
 import loginData from '../test-data/users/login.data.json';
 import envData from '../test-data/environment/urls.data.json';
 

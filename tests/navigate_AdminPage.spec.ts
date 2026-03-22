@@ -1,5 +1,5 @@
 import { AdminPage } from '../pages/adminPage';
-import { UIHelper } from '../helpers/uiHelper';
+import { BasePage } from '../pages/basePage';
 import loginData from '../test-data/users/login.data.json';
 import envData from '../test-data/environment/urls.data.json';
 import { test, expect } from '../fixtures/baseFixture';
@@ -11,7 +11,7 @@ test('Verify Admin Page', async ({ loggedInPage }) => {
     console.log('Login success !')
 
     const dashboard = new DashboardPage(loggedInPage);
-    await dashboard.adminLink.click();
+    await dashboard.navigatetoAdminPage();
     
     
     // 2. Tạo AdminPage từ CÙNG loggedInPage (đã ở Admin page)

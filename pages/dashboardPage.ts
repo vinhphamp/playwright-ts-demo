@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { UIHelper } from "../helpers/uiHelper";
+import { BasePage } from "./basePage";
+
 
 export class DashboardPage {
     readonly page: Page;
@@ -39,8 +40,7 @@ export class DashboardPage {
     }
 
     async checkDashboardUI () {
-        await expect(this.searchSidebar).toBeVisible({timeout: 10_000});
-        // await expect(this.searchSidebar).toBeVisible();
+        await expect(this.searchSidebar).toBeVisible();
         await expect(this.collapseLeftIcon).toBeVisible();
         await this.collapseLeftIcon.click();
         await expect(this.collapseRightIcon).toBeVisible();
@@ -58,9 +58,14 @@ export class DashboardPage {
     }  
 
     async navigatetoAdminPage () {
-        await this.adminLink.click();
+        await BasePage.click(this.adminLink);
+        console.log('Navigate to Admin page');
         
     }
     
+    async navigatetoPIMPage () {
+        await BasePage.click(this.pimLink);
+        console.log('Navigate to PIM page');
+    }
 
 }

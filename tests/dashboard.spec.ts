@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
 import { DashboardPage } from '../pages/dashboardPage';
-import { UIHelper } from '../helpers/uiHelper';
+import { BasePage } from '../pages/basePage';
 import loginData from '../test-data/users/login.data.json';
 import envData from '../test-data/environment/urls.data.json';
 import { env } from 'node:process';
