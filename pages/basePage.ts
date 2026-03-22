@@ -23,8 +23,8 @@ export class BasePage {
     }
     */
 
-    static async isVisible(locator: Locator): Promise<boolean> {
-        return await locator.isVisible();
+    static async isVisible(locator: Locator): Promise<void> {
+        await expect(locator).toBeVisible();
     }
     /* example in using:
         async isAdminLinkVisible(): Promise<boolean> {

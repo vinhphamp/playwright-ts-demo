@@ -19,6 +19,8 @@ export class DashboardPage {
     readonly maintenanceLink: Locator;
     readonly claimLink: Locator;
     readonly buzzLink: Locator;
+    readonly getprofileName: Locator;
+    
 
     constructor(page: Page) {
         this.page = page;
@@ -37,6 +39,8 @@ export class DashboardPage {
         this.maintenanceLink = page.getByRole('link', { name: 'Maintenance'});
         this.claimLink = page.getByRole('link', { name: 'Claim'});
         this.buzzLink = page.getByRole('link', { name: 'Buzz'});
+        this.getprofileName = page.locator('.oxd-userdropdown-tab');
+        
     }
 
     async checkDashboardUI () {
@@ -44,8 +48,9 @@ export class DashboardPage {
         await expect(this.collapseLeftIcon).toBeVisible();
         await this.collapseLeftIcon.click();
         await expect(this.collapseRightIcon).toBeVisible();
-        await this.collapseRightIcon.click();        
-        await expect(this.adminLink).toBeVisible();
+        await this.collapseRightIcon.click();  
+        // await expect(this.adminLink).toBeVisible();
+        await BasePage.isVisible(this.adminLink); // call isVisible from basePage
         await expect(this.pimLink).toBeVisible();
         await expect(this.leaveLink).toBeVisible();
         await expect(this.timeLink).toBeVisible();
@@ -66,6 +71,26 @@ export class DashboardPage {
     async navigatetoPIMPage () {
         await BasePage.click(this.pimLink);
         console.log('Navigate to PIM page');
+    }
+
+    async logOutSuccess () {
+
+        const profileName = await BasePage.getText(this.getprofileName); 
+        console.log(profileName);
+
+        await this.page.locator('span').filter({hasText: `${profileName}`}).click();
+        await this.page.getByRole('menuitem', { name: 'Logout' }).click();
+        console.log('Log Out Success');
+
+        
+
+        // await page.getByRole('textbox', { name: 'Username' }).click();
+        // await page.getByRole('textbox', { name: 'Username' }).fill('Admin');
+        // await page.getByRole('textbox', { name: 'Password' }).click();
+        // await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
+        // await page.getByRole('button', { name: 'Login' }).click();
+        // await page.locator('span').filter({ hasText: 'manda user' }).click();
+        // await page.getByRole('menuitem', { name: 'Logout' }).click();
     }
 
 }

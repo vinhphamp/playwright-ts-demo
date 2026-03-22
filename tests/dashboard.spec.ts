@@ -26,6 +26,11 @@ test.describe ('Dashboard Checking', () => {
         console.log('Dashboard UI Success');
     });
     
+    test('Log Out Success', async () => {
+        await dashboard.logOutSuccess();
+        
+
+    });
 
     /*
     test('Dashboard Page', async ({page}) => {
