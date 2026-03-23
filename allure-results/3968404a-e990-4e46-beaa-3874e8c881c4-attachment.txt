@@ -1,3 +1,0 @@
-Load dashboard page successfully
-Check link Admin success
-Dashboard UI Success

@@ -20,6 +20,7 @@ export class DashboardPage {
     readonly claimLink: Locator;
     readonly buzzLink: Locator;
     readonly getprofileName: Locator;
+    readonly dashboardHeading: Locator;
     
 
     constructor(page: Page) {
@@ -34,6 +35,7 @@ export class DashboardPage {
         this.recruitmentLink = page.getByRole('link', { name: 'Recruitment'});
         this.myinfoLink = page.getByRole('link', { name: 'My Info'});
         this.performanceLink = page.getByRole('link', { name: 'Performance'});
+        this.dashboardHeading = page.getByRole('heading', {level: 6, name: /^Dashboard$/,});
         this.dashboardLink = page.getByRole('link', { name: 'Dashboard'});
         this.directoryLink = page.getByRole('link', { name: 'Directory'});
         this.maintenanceLink = page.getByRole('link', { name: 'Maintenance'});
@@ -44,6 +46,7 @@ export class DashboardPage {
     }
 
     async checkDashboardUI () {
+        await expect(this.dashboardHeading).toBeVisible();
         await expect(this.searchSidebar).toBeVisible();
         await expect(this.collapseLeftIcon).toBeVisible();
         await this.collapseLeftIcon.click();
@@ -81,16 +84,9 @@ export class DashboardPage {
         await this.page.locator('span').filter({hasText: `${profileName}`}).click();
         await this.page.getByRole('menuitem', { name: 'Logout' }).click();
         console.log('Log Out Success');
-
         
 
-        // await page.getByRole('textbox', { name: 'Username' }).click();
-        // await page.getByRole('textbox', { name: 'Username' }).fill('Admin');
-        // await page.getByRole('textbox', { name: 'Password' }).click();
-        // await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
-        // await page.getByRole('button', { name: 'Login' }).click();
-        // await page.locator('span').filter({ hasText: 'manda user' }).click();
-        // await page.getByRole('menuitem', { name: 'Logout' }).click();
+
     }
 
 }

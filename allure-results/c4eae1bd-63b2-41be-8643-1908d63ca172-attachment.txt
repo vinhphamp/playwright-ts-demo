@@ -1,3 +1,0 @@
-Load dashboard page successfully
-manda user
-Log Out Success
