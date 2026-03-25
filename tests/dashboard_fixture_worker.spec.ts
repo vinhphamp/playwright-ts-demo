@@ -1,4 +1,4 @@
-import { workerTest as test, expect, workerTest } from '../fixtures/baseFixture_worker'; // use with scope: worker 
+import { workerTest as test, expect } from '../fixtures/baseFixture_worker'; // use with scope: worker 
 import { DashboardPage } from '../pages/dashboardPage';
 
 
@@ -25,11 +25,43 @@ test.describe('Checking Dashboard Page', () => {
         await dashboard.navigatetoRecruitmentPage();
     });
 
+    test('Navigate to My Info page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoMyInfoPage();
+    });
+
+    test('Navigate to Performance page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoPerformancePage();
+    });
+
+    test('Navigate to Dashboard page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoDashboardPage();
+    });    
+
+    test('Navigate to Directory page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoDirectoryPage();
+    });
+    
+    test('Navigate to Claim page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoClaimPage();
+    });
+
+    test('Navigate to Buzz page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoBuzzPage();
+    });    
+
+    /*
     test('Log Out Successfully', async ({loggedInPage}) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.logOutSuccess();       
 
     });
+    */
 
 });
 

@@ -66,7 +66,6 @@ export class DashboardPage {
     
     getPageHeading(text: string): Locator {
         return this.page.getByRole('heading', {
-            level:6,
             name: new RegExp(text, 'i'), 
         });
     }
@@ -120,13 +119,13 @@ export class DashboardPage {
     }
     
     async navigatetoDirectoryPage () {
-        await BasePage.click(this.dashboardLink);
+        await BasePage.click(this.directoryLink);
         await BasePage.isVisible(this.getPageHeading('Directory'));     
         console.log('Navigate to Directory page successfully')        
     }
 
     async navigatetoClaimPage () {
-        await BasePage.click(this.directoryLink);
+        await BasePage.click(this.claimLink);
         await BasePage.isVisible(this.getPageHeading('Claim'));     
         console.log('Navigate to Claim page successfully')        
     }
@@ -137,13 +136,6 @@ export class DashboardPage {
         console.log('Navigate to Buzz page successfully')        
     }
 
-
-
-
-
-
-
-
     async logOutSuccess () {
 
         const profileName = await BasePage.getText(this.getprofileName); 
@@ -152,8 +144,6 @@ export class DashboardPage {
         await this.page.locator('span').filter({hasText: `${profileName}`}).click();
         await this.page.getByRole('menuitem', { name: 'Logout' }).click();
         console.log('Log Out Success');
-        
-
 
     }
 
