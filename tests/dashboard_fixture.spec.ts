@@ -14,6 +14,19 @@ test.describe('Checking Dashboard Page', () => {
     test('Verify the UI of dashboard page', async () => {
         await dashboard.checkDashboardUI();
 
-    })      
+    })
+    
+    test('Navigate to Leave page', async () => {
+        await dashboard.navigatetoLeavePage();
+    });
+
+    test('Navigate to Recruitment page', async () => {
+        await dashboard.navigatetoRecruitmentPage();
+    });
+
+    test('Log Out Successfully', async () => {
+        await dashboard.logOutSuccess();       
+
+    });
     
 });

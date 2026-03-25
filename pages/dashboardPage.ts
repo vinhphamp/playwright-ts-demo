@@ -74,8 +74,7 @@ export class DashboardPage {
     async navigatetoAdminPage () {
         await BasePage.click(this.adminLink);
         await BasePage.isVisible(this.getPageHeading('Admin'));
-        console.log('Navigate to Admin page successfully');
-        
+        console.log('Navigate to Admin page successfully');        
     }
     
     async navigatetoPIMPage () {
@@ -90,12 +89,60 @@ export class DashboardPage {
         console.log('Navigate to Leave page successfully')
     }
 
+    async navigatetoTimePage () {
+        await BasePage.click(this.timeLink);
+        await BasePage.isVisible(this.getPageHeading('Time'));     
+        console.log('Navigate to Time page successfully')        
+    }
+
     async navigatetoRecruitmentPage () {
         await BasePage.click(this.recruitmentLink);
         await BasePage.isVisible(this.getPageHeading('Recruitment'));     
-        console.log('Navigate to Recruitment page successfully')
-        
+        console.log('Navigate to Recruitment page successfully')        
     }
+
+    async navigatetoMyInfoPage () {
+        await BasePage.click(this.myinfoLink);
+        await BasePage.isVisible(this.getPageHeading('PIM'));     
+        console.log('Navigate to My Info page successfully')        
+    }
+
+    async navigatetoPerformancePage () {
+        await BasePage.click(this.performanceLink);
+        await BasePage.isVisible(this.getPageHeading('Performance'));     
+        console.log('Navigate to Performance page successfully')        
+    }
+
+    async navigatetoDashboardPage () {
+        await BasePage.click(this.dashboardLink);
+        await BasePage.isVisible(this.getPageHeading('Dashboard'));     
+        console.log('Navigate to Dashboard page successfully')        
+    }
+    
+    async navigatetoDirectoryPage () {
+        await BasePage.click(this.dashboardLink);
+        await BasePage.isVisible(this.getPageHeading('Directory'));     
+        console.log('Navigate to Directory page successfully')        
+    }
+
+    async navigatetoClaimPage () {
+        await BasePage.click(this.directoryLink);
+        await BasePage.isVisible(this.getPageHeading('Claim'));     
+        console.log('Navigate to Claim page successfully')        
+    }
+
+    async navigatetoBuzzPage () {
+        await BasePage.click(this.buzzLink);
+        await BasePage.isVisible(this.getPageHeading('Buzz'));     
+        console.log('Navigate to Buzz page successfully')        
+    }
+
+
+
+
+
+
+
 
     async logOutSuccess () {
 

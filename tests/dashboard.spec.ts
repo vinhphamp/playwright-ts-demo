@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
 import { DashboardPage } from '../pages/dashboardPage';
-import { BasePage } from '../pages/basePage';
 import loginData from '../test-data/users/login.data.json';
 import envData from '../test-data/environment/urls.data.json';
 import { env } from 'node:process';
@@ -25,12 +24,7 @@ test.describe ('Dashboard Checking', () => {
     test('Verify Dashboard UI', async () => {
         await dashboard.checkDashboardUI();
         console.log('Dashboard UI Success');
-    });
-    
-    test('Log Out Successfully', async () => {
-        await dashboard.logOutSuccess();       
-
-    });
+    }); 
 
     test('Navigate to Leave page', async () => {
         await dashboard.navigatetoLeavePage();
@@ -38,6 +32,11 @@ test.describe ('Dashboard Checking', () => {
 
     test('Navigate to Recruitment page', async () => {
         await dashboard.navigatetoRecruitmentPage();
+    });
+
+    test('Log Out Successfully', async () => {
+        await dashboard.logOutSuccess();       
+
     });
 
     /*

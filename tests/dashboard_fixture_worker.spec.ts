@@ -15,6 +15,22 @@ test.describe('Checking Dashboard Page', () => {
         await dashboard.navigatetoAdminPage();
     })
     
+    test('Navigate to Leave page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoLeavePage();
+    });
+
+    test('Navigate to Recruitment page', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.navigatetoRecruitmentPage();
+    });
+
+    test('Log Out Successfully', async ({loggedInPage}) => {
+        const dashboard = new DashboardPage(loggedInPage);
+        await dashboard.logOutSuccess();       
+
+    });
+
 });
 
 /*
