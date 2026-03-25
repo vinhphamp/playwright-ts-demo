@@ -8,29 +8,18 @@ export class BasePage {
         await locator.click();
     }
 
-    static async fill(locator: Locator, value: string) {  //example: await BasePage.fill(this.passwordInput, password);
+    static async fill(locator: Locator, value: string) {  //example: await BasePage.fill(this.passwordInput, 'password123456');
         await expect(locator).toBeVisible();
         await locator.fill(value);
     }
 
-    static async getText(locator: Locator): Promise<string> {
+    static async getText(locator: Locator): Promise<string> { // example: return await BasePage.getText(this.pageTitle); // thay "locator" = "this.pageTitle"
         await expect(locator).toBeVisible();
         return await locator.innerText();
     }
-    /* example in using:
-        async getPageTitle(): Promise<string> {
-            return await BasePage.getText(this.pageTitle); // thay "locator" = "this.pageTitle"
-    }
-    */
 
-    static async isVisible(locator: Locator): Promise<void> {
+    static async isVisible(locator: Locator): Promise<void> { // example: return await BasePage.isVisible(this.adminLink);
         await expect(locator).toBeVisible();
     }
-    /* example in using:
-        async isAdminLinkVisible(): Promise<boolean> {
-            return await BasePage.isVisible(this.adminLink);
-    }
-    */
-
-
+    
 }

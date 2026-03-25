@@ -16,6 +16,7 @@ test.describe ('Dashboard Checking', () => {
         dashboard = new DashboardPage(page);
         await login.goto(envData.test.url);
         await login.login(loginData.validUser.username, loginData.validUser.password);
+        await page.waitForURL(/dashboard/);
         await expect(dashboard.dashboardLink).toBeVisible();
         console.log("Load dashboard page successfully");
 
@@ -26,10 +27,17 @@ test.describe ('Dashboard Checking', () => {
         console.log('Dashboard UI Success');
     });
     
-    test('Log Out Success', async () => {
-        await dashboard.logOutSuccess();
-        
+    test('Log Out Successfully', async () => {
+        await dashboard.logOutSuccess();       
 
+    });
+
+    test('Navigate to Leave page', async () => {
+        await dashboard.navigatetoLeavePage();
+    });
+
+    test('Navigate to Recruitment page', async () => {
+        await dashboard.navigatetoRecruitmentPage();
     });
 
     /*

@@ -20,8 +20,7 @@ export class DashboardPage {
     readonly claimLink: Locator;
     readonly buzzLink: Locator;
     readonly getprofileName: Locator;
-    readonly dashboardHeading: Locator;
-    
+    readonly dashboardHeading: Locator;    
 
     constructor(page: Page) {
         this.page = page;
@@ -61,19 +60,41 @@ export class DashboardPage {
         await expect(this.myinfoLink).toBeVisible();
         await expect(this.performanceLink).toBeVisible();
         await expect(this.dashboardLink).toBeVisible();
-        await expect(this.directoryLink).toBeVisible();     
+        await expect(this.directoryLink).toBeVisible();        
 
-    }  
+    }
+    
+    getPageHeading(text: string): Locator {
+        return this.page.getByRole('heading', {
+            level:6,
+            name: new RegExp(text, 'i'), 
+        });
+    }
 
     async navigatetoAdminPage () {
         await BasePage.click(this.adminLink);
-        console.log('Navigate to Admin page');
+        await BasePage.isVisible(this.getPageHeading('Admin'));
+        console.log('Navigate to Admin page successfully');
         
     }
     
     async navigatetoPIMPage () {
         await BasePage.click(this.pimLink);
-        console.log('Navigate to PIM page');
+        await BasePage.isVisible(this.getPageHeading('PIM'));
+        console.log('Navigate to PIM page successfully');
+    }
+
+    async navigatetoLeavePage () {
+        await BasePage.click(this.leaveLink);
+        await BasePage.isVisible(this.getPageHeading('Leave'))
+        console.log('Navigate to Leave page successfully')
+    }
+
+    async navigatetoRecruitmentPage () {
+        await BasePage.click(this.recruitmentLink);
+        await BasePage.isVisible(this.getPageHeading('Recruitment'));     
+        console.log('Navigate to Recruitment page successfully')
+        
     }
 
     async logOutSuccess () {

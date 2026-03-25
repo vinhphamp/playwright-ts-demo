@@ -1,5 +1,4 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { UIHelper } from "../helpers/uiHelper";
 import { DashboardPage } from "./dashboardPage";
 import { listen } from "node:quic";
 
