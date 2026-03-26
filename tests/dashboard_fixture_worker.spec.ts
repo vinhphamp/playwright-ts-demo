@@ -1,69 +1,136 @@
-import { workerTest as test, expect } from '../fixtures/baseFixture_worker'; // use with scope: worker 
+import { workerTest as test, expect } from '../fixtures/baseFixture_worker';
 import { DashboardPage } from '../pages/dashboardPage';
-
+import envData from '../test-data/environment/urls.data.json';
 
 test.describe('Checking Dashboard Page', () => {
-    
-    test('Verify the UI of dashboard page', async ({loggedInPage}) => {
+
+    // ✅ Reset page về dashboard trước mỗi test
+    test.beforeEach(async ({ loggedInPage }) => {
+        await loggedInPage.goto(envData.test.url + '/dashboard');
+        // hoặc URL cụ thể tuỳ project của bạn
+    });
+
+    test('Verify the UI of dashboard page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.checkDashboardUI();
+    });
 
-    })
-    
-    test('Verify link Admin link to Admin page', async ({loggedInPage}) => {
+    test('Verify link Admin link to Admin page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoAdminPage();
-    })
-    
-    test('Navigate to Leave page', async ({loggedInPage}) => {
+    });
+
+    test('Navigate to Leave page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoLeavePage();
     });
 
-    test('Navigate to Recruitment page', async ({loggedInPage}) => {
+    test('Navigate to Recruitment page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoRecruitmentPage();
     });
 
-    test('Navigate to My Info page', async ({loggedInPage}) => {
+    test('Navigate to My Info page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoMyInfoPage();
     });
 
-    test('Navigate to Performance page', async ({loggedInPage}) => {
+    test('Navigate to Performance page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoPerformancePage();
     });
 
-    test('Navigate to Dashboard page', async ({loggedInPage}) => {
+    test('Navigate to Dashboard page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoDashboardPage();
-    });    
+    });
 
-    test('Navigate to Directory page', async ({loggedInPage}) => {
+    test('Navigate to Directory page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoDirectoryPage();
     });
-    
-    test('Navigate to Claim page', async ({loggedInPage}) => {
+
+    test('Navigate to Claim page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoClaimPage();
     });
 
-    test('Navigate to Buzz page', async ({loggedInPage}) => {
+    test('Navigate to Buzz page', async ({ loggedInPage }) => {
         const dashboard = new DashboardPage(loggedInPage);
         await dashboard.navigatetoBuzzPage();
-    });    
-
-    /*
-    test('Log Out Successfully', async ({loggedInPage}) => {
-        const dashboard = new DashboardPage(loggedInPage);
-        await dashboard.logOutSuccess();       
-
     });
-    */
 
 });
+
+
+// ----------------------------------------------
+
+// import { workerTest as test, expect } from '../fixtures/baseFixture_worker'; // use with scope: worker 
+// import { DashboardPage } from '../pages/dashboardPage';
+
+
+// test.describe('Checking Dashboard Page', () => {
+    
+//     test('Verify the UI of dashboard page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.checkDashboardUI();
+
+//     })
+    
+//     test('Verify link Admin link to Admin page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoAdminPage();
+//     })
+    
+//     test('Navigate to Leave page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoLeavePage();
+//     });
+
+//     test('Navigate to Recruitment page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoRecruitmentPage();
+//     });
+
+//     test('Navigate to My Info page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoMyInfoPage();
+//     });
+
+//     test('Navigate to Performance page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoPerformancePage();
+//     });
+
+//     test('Navigate to Dashboard page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoDashboardPage();
+//     });    
+
+//     test('Navigate to Directory page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoDirectoryPage();
+//     });
+    
+//     test('Navigate to Claim page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoClaimPage();
+//     });
+
+//     test('Navigate to Buzz page', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.navigatetoBuzzPage();
+//     });    
+
+//     /*
+//     test('Log Out Successfully', async ({loggedInPage}) => {
+//         const dashboard = new DashboardPage(loggedInPage);
+//         await dashboard.logOutSuccess();       
+
+//     });
+//     */
+// });
+
 
 /*
 // using beforeEach step

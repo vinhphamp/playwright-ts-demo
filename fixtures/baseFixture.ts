@@ -18,24 +18,6 @@ export const test = base.extend<MyFixtures>({
     }
 }); 
 
-/*
-// Nếu muốn scope: 'worker', bạn viết như sau:
-export const workerTest = base.extend<MyFixtures>({
-  loggedInPage: [
-    async ({ browser }, use) => {
-      const context = await browser.newContext();
-      const page = await context.newPage();
-      
-      const login = new LoginPage(page);
-      await login.goto(envData.test.url);
-      await login.login(accData.validUser.username, accData.validUser.password);
-      
-      await use(page);
-      await context.close();
-    },
-    { scope: 'worker' } as any 
-  ]
-});
-*/
+
 
 export const expect = baseExpect;
