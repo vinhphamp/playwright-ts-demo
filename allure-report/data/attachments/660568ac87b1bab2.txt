@@ -1,0 +1,2 @@
+status code return:  400
+the error message to inform:  Missing password

@@ -4,7 +4,7 @@
 
 ## Run commands
 
-### Codespaces environment:
+### Codespaces environment: -> run one command 'npm run report:allure' (must configured with commands 'npm i -D http-server' -> 'npm i -D open' and package.json file (report:allure) )
 
 1. `rm -rf allure-results allure-report`
 
