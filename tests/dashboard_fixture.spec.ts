@@ -1,5 +1,4 @@
 import { test, expect } from '../fixtures/baseFixture'; // use with scope: test
-// import { workerTest as test, expect } from '../fixtures/baseFixture'; // use with scope: worker 
 import { DashboardPage } from '../pages/dashboardPage';
 
 

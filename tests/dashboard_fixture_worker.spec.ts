@@ -1,6 +1,4 @@
 import { workerTest as test, expect } from '../fixtures/baseFixture_worker';
-import { DashboardPage } from '../pages/dashboardPage';
-
 
 test.describe('Checking Dashboard Page', () => {
 
