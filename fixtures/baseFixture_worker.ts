@@ -2,13 +2,14 @@ import { test as base, expect as baseExpect, Page } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
 import envData from '../test-data/environment/urls.data.json';
 import accData from '../test-data/users/login.data.json';
+import { DashboardPage } from '../pages/dashboardPage';
 
 type MyFixtures = {
-    loggedInPage: Page;
+    dashboardPage: DashboardPage;
 };
 
 export const workerTest = base.extend<MyFixtures>({
-    loggedInPage: [
+    dashboardPage: [
         async ({ browser }, use) => {
             console.log("LOGIN RUNNING...");
 
@@ -20,7 +21,8 @@ export const workerTest = base.extend<MyFixtures>({
             await login.login(accData.validUser.username, accData.validUser.password);
             await login.assertLoginSuccess();
 
-            await use(page);
+            const dashboardPage = new DashboardPage(page);
+            await use(dashboardPage);
             await context.close();
         },
         { scope: 'worker' } as any

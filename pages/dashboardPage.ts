@@ -66,7 +66,7 @@ export class DashboardPage {
     
     getPageHeading(text: string): Locator {
         return this.page.getByRole('heading', {
-            name: new RegExp(text, 'i'), 
+            name: new RegExp(text, 'i'), level: 6 
         });
     }
 
