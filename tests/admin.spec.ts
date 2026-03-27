@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/baseFixture';
 import { AdminPage } from '../pages/adminPage';
 import { DashboardPage } from '../pages/dashboardPage';
-import { UIHelper } from '../helpers/uiHelper';
+
 
 test('should open Admin page', async ({ loggedInPage }) => {
 

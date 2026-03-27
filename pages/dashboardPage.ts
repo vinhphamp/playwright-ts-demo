@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
 import { BasePage } from "./basePage";
+import { AdminPage } from "./adminPage";
 
 
 export class DashboardPage {
@@ -70,10 +71,10 @@ export class DashboardPage {
         });
     }
 
-    async navigatetoAdminPage () {
+    async navigatetoAdminPage (): Promise<AdminPage> {
         await BasePage.click(this.adminLink);
         await BasePage.isVisible(this.getPageHeading('Admin'));
-        console.log('Navigate to Admin page successfully');        
+        return new AdminPage(this.page);  // return to following page       
     }
     
     async navigatetoPIMPage () {
