@@ -48,10 +48,21 @@ export class AdminPage {
 
     }
 
-    async navigateToJobPage () {
-        this.jobDropdown.click();
+    async navigateToJobPage () { // not redirect to new page
+        await this.jobDropdown.click();
     }
 
+    /*
+    async navigateToJobPage (): Promise<void> { // not redirect to new page
+        await this.jobDropdown.click();
+    }
+
+    async navigateToJobPage (): Promise<JobPage> { // redirect to new page
+        await this.jobDropdown.click();
+        return new JobPage(this.page);
+    }
+    */
+   
     async navigateToOrganizationPage () {
         this.organizationDropdown.click();
     }
