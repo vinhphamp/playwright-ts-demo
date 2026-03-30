@@ -1,2 +1,0 @@
-Navigate to Admin page successfully
-Navigate to User Management Page Success
