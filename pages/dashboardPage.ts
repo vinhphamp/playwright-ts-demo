@@ -21,7 +21,8 @@ export class DashboardPage {
     readonly claimLink: Locator;
     readonly buzzLink: Locator;
     readonly getprofileName: Locator;
-    readonly dashboardHeading: Locator;    
+    readonly dashboardHeading: Locator; 
+    readonly adminHeading: Locator;   
 
     constructor(page: Page) {
         this.page = page;
@@ -42,6 +43,7 @@ export class DashboardPage {
         this.claimLink = page.getByRole('link', { name: 'Claim'});
         this.buzzLink = page.getByRole('link', { name: 'Buzz'});
         this.getprofileName = page.locator('.oxd-userdropdown-tab');
+        this.adminHeading = page.getByRole('heading', { name: 'Admin'});
         
     }
 
@@ -73,7 +75,8 @@ export class DashboardPage {
 
     async navigatetoAdminPage (): Promise<AdminPage> {
         await BasePage.click(this.adminLink);
-        await BasePage.isVisible(this.getPageHeading('Admin'));
+        await BasePage.isVisible(this.adminHeading);
+        //await BasePage.isVisible(this.getPageHeading('Admin'));
         return new AdminPage(this.page);  // return to following page       
     }
     
