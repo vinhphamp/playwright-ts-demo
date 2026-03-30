@@ -9,8 +9,9 @@ test('should open Admin page', async ({ loggedInPage }) => {
   const admin = new AdminPage(loggedInPage);
 
   await test.step('Navigate to Admin page', async () => {
-    await dashboard.navigatetoAdminPage();
+    await dashboard.navigatetoAdminPage();    
     await expect(loggedInPage).toHaveURL(/admin/);
+    await admin.verifyAdminPageIsDisplayed();
   });
 
   await test.step('Verify Admin UI', async () => {

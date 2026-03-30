@@ -5,6 +5,9 @@ import { UserManagementPage } from "./usermanagementPage";
 
 export class AdminPage {
     readonly page: Page;
+    readonly adminHeader: Locator;
+    readonly usermanagementHeader: Locator;
+    // ----------------------
     readonly usermanagerDropdown: Locator;
     readonly userMenuItem: Locator
     // -----------------------
@@ -30,6 +33,8 @@ export class AdminPage {
 
     constructor(page: Page) {
         this.page = page;
+        this.adminHeader = page.getByRole('heading', { name: 'Admin' });
+        this.usermanagementHeader = page.getByRole('heading', { name: 'User Management' });
         // --------------------------
         this.usermanagerDropdown = page.locator('span.oxd-topbar-body-nav-tab-item', { hasText: 'User Management'});
         this.userMenuItem = page.getByRole('menuitem', { name: 'User' });
@@ -57,6 +62,12 @@ export class AdminPage {
         
     }
 
+    async verifyAdminPageIsDisplayed () {
+        await BasePage.isVisible(this.adminHeader);
+        await BasePage.isVisible(this.usermanagementHeader);
+    }
+
+    
     async navigateToUserManagementPage (): Promise<UserManagementPage> {        
         await BasePage.click(this.usermanagerDropdown);
         await expect(this.userMenuItem).toBeVisible();
