@@ -1,19 +1,19 @@
-import { test, Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import { BasePage } from './basePage';
 
 export class UserManagementPage {
     readonly page: Page;
-    readonly systemusersHeading: Locator;
+    readonly systemUsersHeading: Locator;
 
 
     constructor(page:Page) {
         this.page = page;
-        this.systemusersHeading = page.getByRole('heading', { level: 5, name: 'System Users'});
+        this.systemUsersHeading = page.getByRole('heading', { level: 5, name: 'System Users' });
 
     }
 
-    async verifyUserManagementPageIsDisplayed () {
-        await BasePage.isVisible(this.systemusersHeading);
+    async verifyUserManagementPageIsDisplayed (): Promise<void> {
+        await BasePage.isVisible(this.systemUsersHeading);
     }
 
 }
