@@ -5,21 +5,36 @@ import { UserManagementPage } from "./usermanagementPage";
 
 export class AdminPage {
     readonly page: Page;
+    readonly adminHeader: Locator;
+    readonly usermanagementHeader: Locator;
+    // ----------------------
     readonly usermanagerDropdown: Locator;
     readonly userMenuItem: Locator
+    // -----------------------
     readonly jobDropdown: Locator; 
     readonly jobtitlesMenuItem: Locator;
     readonly paygradesMenuItem: Locator;
     readonly employeestatusMenuItem: Locator;
     readonly jobcategoriesMenuItem: Locator;
     readonly workshiftsMenuItem: Locator;
+    // ------------------------
     readonly organizationDropdown: Locator;
     readonly generalinformationMenuItem: Locator;
     readonly locationsMenuItem: Locator;
     readonly structureMenuItem: Locator;
+    // ------------------------
+    readonly qualificationsDropdown: Locator;
+    readonly skillsMenuItem: Locator;
+    readonly educationMenuItem: Locator;
+    readonly licensesMenuItem: Locator;
+    readonly languagesMenuItem: Locator;
+    readonly membershipsMenuItem: Locator;
+
 
     constructor(page: Page) {
         this.page = page;
+        this.adminHeader = page.getByRole('heading', { name: 'Admin' });
+        this.usermanagementHeader = page.getByRole('heading', { name: 'User Management' });
         // --------------------------
         this.usermanagerDropdown = page.locator('span.oxd-topbar-body-nav-tab-item', { hasText: 'User Management'});
         this.userMenuItem = page.getByRole('menuitem', { name: 'User' });
@@ -36,10 +51,23 @@ export class AdminPage {
         this.generalinformationMenuItem = page.getByRole('menuitem', { name: 'General Information'});
         this.locationsMenuItem = page.getByRole('menuitem', { name: 'Locations'});
         this.structureMenuItem = page.getByRole('menuitem', { name: 'Structure'});
+        // -------------------------
+        this.qualificationsDropdown = page.getByRole('listitem', { name: 'Qualifications' });
+        this.skillsMenuItem = page.getByRole('menuitem', { name: 'Skills' });
+        this.educationMenuItem = page.getByRole('menuitem', { name: 'Education' });
+        this.licensesMenuItem = page.getByRole('menuitem', { name: 'Licenses' });
+        this.languagesMenuItem = page.getByRole('menuitem', { name: 'Languages' });
+        this.membershipsMenuItem = page.getByRole('menuitem', { name: 'Memberships' });
 
         
     }
 
+    async verifyAdminPageIsDisplayed () {
+        await BasePage.isVisible(this.adminHeader);
+        await BasePage.isVisible(this.usermanagementHeader);
+    }
+
+    
     async navigateToUserManagementPage (): Promise<UserManagementPage> {        
         await BasePage.click(this.usermanagerDropdown);
         await expect(this.userMenuItem).toBeVisible();
