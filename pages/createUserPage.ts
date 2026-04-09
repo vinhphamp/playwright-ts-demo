@@ -2,9 +2,14 @@ import { Page, Locator, test, expect } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 export class CreateUserPage {
-    readonly page: Page;    
+    readonly page: Page;
+    readonly userRoleGroup;
+    readonly userRoleLabel;
     readonly userRoleDropdown;
+    readonly userRoleErrorMessage;
+    readonly statusGroup;
     readonly statusDropDown;
+    readonly statusErrorMessage;
     readonly employeeNameField;
     readonly userNameField;
     readonly passwordField;
@@ -16,8 +21,13 @@ export class CreateUserPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.userRoleDropdown = page.getByLabel('User Role');
-        this.statusDropDown = page.getByRole('list', { name: 'Status' });
+        this.userRoleGroup = this.page.locator('.oxd-input-group').filter({ has: this.page.getByText('User Role', { exact: true}) })
+        this.userRoleLabel = page.getByLabel('User Role');
+        this.userRoleDropdown = this.userRoleGroup.locator('.oxd-select-text-input');
+        this.userRoleErrorMessage = this.userRoleGroup.locator('.oxd-input-field-error-message');
+        this.statusGroup = page.locator('.oxd-input-group').filter({ has: this.page.getByText('Status', { exact: true }) });
+        this.statusDropDown = this.statusGroup.locator('.oxd-select-text-input');
+        this.statusErrorMessage = this.statusGroup.locator('.oxd-input-field-error-message');        
         this.employeeNameField = page.getByPlaceholder('Type for hints...');
         this.userNameField = page.getByRole('textbox' , { name: 'Username'});
         this.passwordField = page.getByRole('textbox', { name: 'Password'});
@@ -35,9 +45,13 @@ export class CreateUserPage {
 
     async verifyRequiredMessage() {
         await this.saveButton.click();
-        // await BasePage.click(this.saveButton);
-        // await expect(this.userRoleDropdown.getByText('Required')).toBeVisible();
+        await expect(this.userRoleErrorMessage).toHaveText('Required');
+        await expect(this.userRoleErrorMessage).toHaveText('Required');
         await this.userRoleDropdown.click();
+        await this.userRoleDropdown.click();
+        await this.statusDropDown.click();
+
+        
     }
 
 
