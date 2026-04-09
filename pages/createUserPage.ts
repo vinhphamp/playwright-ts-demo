@@ -2,13 +2,16 @@ import { Page, Locator, test, expect } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 export class CreateUserPage {
-    readonly page: Page;
+    readonly page: Page;    
     readonly userRoleDropdown;
     readonly statusDropDown;
     readonly employeeNameField;
     readonly userNameField;
     readonly passwordField;
     readonly confirmPasswordField;
+    readonly adduserText;
+    readonly saveButton;
+    
 
 
     constructor(page: Page) {
@@ -19,11 +22,22 @@ export class CreateUserPage {
         this.userNameField = page.getByRole('textbox' , { name: 'Username'});
         this.passwordField = page.getByRole('textbox', { name: 'Password'});
         this.confirmPasswordField = page.getByRole('textbox', { name: 'Confirm Password'});
+        this.adduserText = page.getByText('Add User', { exact: true });
+        this.saveButton = page.getByRole('button', { name: "Save"});
+        
 
     }
 
     async verifyAddUserPageIsDisplayed() {
+        await BasePage.isVisible(this.adduserText);
 
+    }
+
+    async verifyRequiredMessage() {
+        await this.saveButton.click();
+        // await BasePage.click(this.saveButton);
+        // await expect(this.userRoleDropdown.getByText('Required')).toBeVisible();
+        await this.userRoleDropdown.click();
     }
 
 
