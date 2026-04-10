@@ -20,7 +20,7 @@ test.describe('User Management Module', () => {
         await admin.usermanagerDropdown.click();
         await admin.userMenuItem.click();
         await expect(loggedInPage).toHaveURL(/viewSystemUsers/);
-        //expect(usermanagement.verifyUserManagementPageIsDisplayed());
+
     });
 
     test('Verify the UI of create new user page', async () => {
