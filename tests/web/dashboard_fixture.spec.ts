@@ -1,5 +1,5 @@
-import { test, expect } from '../fixtures/baseFixture'; // use with scope: test
-import { DashboardPage } from '../pages/dashboardPage';
+import { test, expect } from '../../fixtures/baseFixture'; // use with scope: test
+import { DashboardPage } from '../../pages/dashboardPage';
 
 
 test.describe('Checking Dashboard Page', () => {

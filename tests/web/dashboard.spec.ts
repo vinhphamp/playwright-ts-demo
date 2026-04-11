@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
-import { DashboardPage } from '../pages/dashboardPage';
-import loginData from '../test-data/users/login.data.json';
-import envData from '../test-data/environment/urls.data.json';
+import { LoginPage } from '../../pages/loginPage';
+import { DashboardPage } from '../../pages/dashboardPage';
+import loginData from '../../test-data/users/login.data.json';
+import envData from '../../test-data/environment/urls.data.json';
 import { env } from 'node:process';
 
 test.describe ('Dashboard Checking', () => {

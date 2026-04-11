@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
-import loginData from '../test-data/users/login.data.json';
-import envData from '../test-data/environment/urls.data.json';
+import { LoginPage } from '../../pages/loginPage';
+import loginData from '../../test-data/users/login.data.json';
+import envData from '../../test-data/environment/urls.data.json';
 
 test.describe('Authentication | Login', () => {
   let login: LoginPage;

@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
-import { BasePage } from '../pages/basePage';
-import loginData from '../test-data/users/login.data.json';
-import envData from '../test-data/environment/urls.data.json';
+import { LoginPage } from '../../pages/loginPage';
+import { BasePage } from '../../pages/basePage';
+import loginData from '../../test-data/users/login.data.json';
+import envData from '../../test-data/environment/urls.data.json';
 
 test.describe('Login Checking', () => {
     let login: LoginPage;

@@ -24,8 +24,16 @@ export class CreateUserPage {
     readonly userNameField;
     readonly userNameErrorMessage;
 
+    readonly passwordGroup;
+    readonly passwordLabel;
     readonly passwordField;
-    readonly confirmPasswordField;
+    readonly passwordErrorMessage;
+
+    readonly confirmpasswordGroup;
+    readonly confirmpasswordLabel;
+    readonly confirmpasswordField;
+    readonly confirmpasswordErrorMessage;
+
     readonly adduserText;
     readonly saveButton;
 
@@ -36,13 +44,11 @@ export class CreateUserPage {
         this.page = page;
 
         this.userRoleGroup = page.locator('.oxd-input-group').filter({ has: page.locator('label', { hasText: 'User Role' })});
-        // this.userRoleGroup = page.locator('.oxd-input-group').filter({ has: this.page.getByText('User Role', { exact: true}) });
         this.userRoleLabel = this.userRoleGroup.locator('label', { hasText: 'User Role' });
         this.userRoleDropdown = this.userRoleGroup.locator('.oxd-select-text-input');
         this.userRoleErrorMessage = this.userRoleGroup.locator('.oxd-input-field-error-message');
 
         this.statusGroup = page.locator('.oxd-input-group').filter({ has: page.locator('label', { hasText: 'Status'}) })
-        // this.statusGroup = page.locator('.oxd-input-group').filter({ has: this.page.getByText('Status', { exact: true }) });
         this.statusLabel = this.statusGroup.locator('label', { hasText: 'Status' });
         this.statusDropDown = this.statusGroup.locator('.oxd-select-text-input');
         this.statusErrorMessage = this.statusGroup.locator('.oxd-input-field-error-message');
@@ -57,8 +63,17 @@ export class CreateUserPage {
         this.userNameField = this.userNameGroup.locator('.oxd-input--active');
         this.userNameErrorMessage = this.userNameGroup.locator('.oxd-input-field-error-message');
 
-        this.passwordField = page.getByRole('textbox', { name: 'Password'});
-        this.confirmPasswordField = page.getByRole('textbox', { name: 'Confirm Password'});
+        this.passwordGroup = page.locator('.oxd-input-group').filter({ has: page.locator('label', { hasText: /^Password$/ }) });
+        this.passwordLabel = this.passwordGroup.getByText('Password');
+        this.passwordField = this.passwordGroup.locator('.oxd-input--active');
+        this.passwordErrorMessage = this.passwordGroup.locator('.oxd-input-field-error-message');
+
+        this.confirmpasswordGroup = page.locator('.oxd-input-group').filter({ has: page.locator('label', { hasText: 'Confirm Password' }) });
+        this.confirmpasswordLabel = this.confirmpasswordGroup.locator('.oxd-label', { hasText: 'Confirm Password'});
+        this.confirmpasswordField = this.confirmpasswordGroup.locator('.oxd-input--active');
+        this.confirmpasswordErrorMessage = this.confirmpasswordGroup.locator('.oxd-input-field-error-message');
+
+        
         this.adduserText = page.getByText('Add User', { exact: true });
         this.saveButton = page.getByRole('button', { name: "Save"});
         
@@ -79,11 +94,18 @@ export class CreateUserPage {
         await expect(this.userRoleErrorMessage).toHaveText('Required');
         await expect(this.userRoleErrorMessage).toHaveText('Required');
         await expect(this.employeeErrorMessage).toHaveText('Required');
+        await expect(this.passwordErrorMessage).toHaveText('Required');
+        await expect(this.confirmpasswordErrorMessage).toHaveText('Passwords do not match'); 
+
         await this.userRoleDropdown.click();
         await this.userRoleDropdown.click();
         await this.statusDropDown.click();
         await this.statusDropDown.click();
+        await this.passwordField.click()
         await this.employeeNameField.click();
+        await this.userNameField.click();
+        await this.confirmpasswordErrorMessage.click();
+        
 
         
     }

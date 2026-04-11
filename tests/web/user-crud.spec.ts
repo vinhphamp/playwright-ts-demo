@@ -1,8 +1,9 @@
-import { test, expect } from "../fixtures/baseFixture";
-import { AdminPage } from "../pages/adminPage";
-import { DashboardPage } from "../pages/dashboardPage";
-import { UserManagementPage } from "../pages/usermanagementPage";
-import { CreateUserPage } from "../pages/createUserPage";
+import { test as base } from '@playwright/test';
+import { test, expect } from "../../fixtures/baseFixture";
+import { AdminPage } from "../../pages/adminPage";
+import { DashboardPage } from "../../pages/dashboardPage";
+import { UserManagementPage } from "../../pages/usermanagementPage";
+import { CreateUserPage } from "../../pages/createUserPage";
 
 
 test.describe('User Management Module', () => {

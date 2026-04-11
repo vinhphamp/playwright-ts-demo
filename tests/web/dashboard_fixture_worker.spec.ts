@@ -1,4 +1,4 @@
-import { workerTest as test, expect } from '../fixtures/baseFixture_worker';
+import { workerTest as test, expect } from '../../fixtures/baseFixture_worker';
 
 test.describe('Checking Dashboard Page', () => {
 
