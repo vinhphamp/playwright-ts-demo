@@ -1,0 +1,15 @@
+{
+    "newUser": {
+        "userrole": "Admin",
+        "userstatus": "Enabled",
+        "employeename": "J",
+        "username": "vinhautotest_01",
+        "password": "admin123456",
+        "confirmpassword": "admin123456"
+    },
+
+    "existedUser": {
+        "username": "Admin1",
+        "password": "admin123"
+    }
+}

@@ -4,6 +4,7 @@ import { AdminPage } from "../../pages/adminPage";
 import { DashboardPage } from "../../pages/dashboardPage";
 import { UserManagementPage } from "../../pages/usermanagementPage";
 import { CreateUserPage } from "../../pages/createUserPage";
+import createUserData from "../../test-data/users/createuser.data.json";
 
 
 test.describe('User Management Module', () => {
@@ -24,19 +25,29 @@ test.describe('User Management Module', () => {
 
     });
 
-    test('Verify the UI of create new user page', async () => {
+    test('Verify the UI of user management page', async () => {
         await usermanagement.verifyUserManagementPageIsDisplayed();        
 
-    })
+    });
+
+    test('Verify the UI of add new user page', async () => {
+        await usermanagement.navigateToAddUserPage();
+        await createUser.verifyAddUserPageIsDisplayed();
+
+    });
+
+    test('Verify the error message to require fields', async ()=> {
+        await usermanagement.navigateToAddUserPage();
+        await createUser.verifyAddUserPageIsDisplayed();
+        await createUser.verifyRequiredMessage();
+    });
 
     test('Create new user successfully', async () => {
         await usermanagement.navigateToAddUserPage();
         await createUser.verifyAddUserPageIsDisplayed();
         await createUser.verifyRequiredMessage();
+        await createUser.addInformationNewUser(createUserData.newUser);
 
-    })
-    
-
-
+    }); 
     
 });
