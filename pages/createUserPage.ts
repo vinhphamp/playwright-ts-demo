@@ -134,7 +134,8 @@ export class CreateUserPage {
         await this.selectFirstEmployeeName(userInfo.employeename);
         await this.userNameField.fill(userInfo.username);
         await this.passwordField.fill(userInfo.password);
-        await this.confirmpasswordField.fill(userInfo.confirmpassword);  
+        await this.confirmpasswordField.fill(userInfo.confirmpassword);
+        await this.saveButton.click();  
     }
 
         

@@ -2,8 +2,8 @@
     "newUser": {
         "userrole": "Admin",
         "userstatus": "Enabled",
-        "employeename": "J",
-        "username": "vinhautotest_01",
+        "employeename": "A",
+        "username": "vinhautotest",
         "password": "admin123456",
         "confirmpassword": "admin123456"
     },

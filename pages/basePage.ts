@@ -5,6 +5,7 @@ export class BasePage {
 
     static async click(locator: Locator) {  //example: await BasePage.click(this.loginButton);
         await expect(locator).toBeVisible();
+        await expect(locator).toBeEnabled();
         await locator.click();
     }
 

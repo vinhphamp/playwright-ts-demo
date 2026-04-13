@@ -4,7 +4,7 @@ import { AdminPage } from "../../pages/adminPage";
 import { DashboardPage } from "../../pages/dashboardPage";
 import { UserManagementPage } from "../../pages/usermanagementPage";
 import { CreateUserPage } from "../../pages/createUserPage";
-import createUserData from "../../test-data/users/createuser.data.json";
+import { buildUser } from '../../helpers/data/userDataBuilder';
 
 
 test.describe('User Management Module', () => {
@@ -46,7 +46,28 @@ test.describe('User Management Module', () => {
         await usermanagement.navigateToAddUserPage();
         await createUser.verifyAddUserPageIsDisplayed();
         await createUser.verifyRequiredMessage();
-        await createUser.addInformationNewUser(createUserData.newUser);
+
+        const newUser = buildUser();
+        console.log('generated username', newUser.username);
+        await createUser.addInformationNewUser(newUser);
+        await usermanagement.verifyUserManagementPageIsDisplayed();
+        
+        /*
+        -> file spec -> sample call 2 methods to search generated username again from user list to verify the action to create new user successfully
+        await usermanagement.searchUserByUsername(newUser.username);
+        await usermanagement.verifyUserDisplayedInList(newUser.username);
+
+        -> add more 2 methods into usermanagementPage.ts
+        
+        async searchUserByUsername(username: string): Promise<void> {
+            await this.usernameSearchField.fill(username);
+            await this.searchButton.click();
+            }       
+        async verifyUserDisplayedInList(username: string): Promise<void> {
+            await expect(this.page.getByRole('cell', { name: username })).toBeVisible();
+            }
+
+        */
 
     }); 
     

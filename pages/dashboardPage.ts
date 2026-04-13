@@ -74,6 +74,7 @@ export class DashboardPage {
     }
 
     async navigatetoAdminPage (): Promise<AdminPage> {
+        await BasePage.isVisible(this.adminLink);
         await BasePage.click(this.adminLink);
         await BasePage.isVisible(this.adminHeading);
         //await BasePage.isVisible(this.getPageHeading('Admin'));
