@@ -1,6 +1,6 @@
-import { test, expect } from '../../fixtures/baseFixture';
-import { AdminPage } from '../../pages/adminPage';
-import { DashboardPage } from '../../pages/dashboardPage';
+import { test, expect } from '../../src/fixtures/baseFixture';
+import { AdminPage } from '../../src/pages/adminPage';
+import { DashboardPage } from '../../src/pages/dashboardPage';
 
 
 test('should open Admin page', async ({ loggedInPage }) => {

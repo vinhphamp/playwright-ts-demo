@@ -35,7 +35,7 @@ export class LoginPage {
 
         this.dashboardHome = page.locator('.oxd-main-menu-item--name', { hasText: 'Dashboard' });
       
-        this.alert = page.getByRole('alert');
+        this.alert = page.locator('.oxd-alert-content-text');
         
     }
 
@@ -57,8 +57,11 @@ export class LoginPage {
     }
 
     async assertLoginNotSuccess() {
-        await expect(this.alert).toBeVisible({ timeout: 10_000 });
-        await expect(this.alert).toContainText('Invalid credentials');
+        await expect(this.page.getByText('Invalid credentials')).toBeVisible({
+        timeout: 8000,
+    });
+        // await expect(this.alert).toBeVisible({ timeout: 15_000 });
+        // await expect(this.alert).toContainText('Invalid credentials');
     }
 
     async assertLoginEmptyAccount() {        

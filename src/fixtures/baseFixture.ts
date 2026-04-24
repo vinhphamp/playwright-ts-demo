@@ -1,7 +1,7 @@
 import { test as base, expect as baseExpect, Page, Browser } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
-import envData from '../test-data/environment/urls.data.json';
-import accData from '../test-data/users/login.data.json';
+import envData from '../../test-data/environment/urls.data.json';
+import accData from '../../test-data/users/login.data.json';
 
 type MyFixtures = {
     loggedInPage: Page;

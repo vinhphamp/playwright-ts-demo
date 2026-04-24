@@ -1,0 +1,2 @@
+Load page successfully
+Alert count: 0

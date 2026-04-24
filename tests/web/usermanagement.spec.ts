@@ -1,7 +1,7 @@
-import { test } from '../../fixtures/baseFixture';
-import { DashboardPage } from '../../pages/dashboardPage';
-import { AdminPage } from '../../pages/adminPage';
-import { UserManagementPage } from '../../pages/usermanagementPage';
+import { test } from '../../src/fixtures/baseFixture';
+import { DashboardPage } from '../../src/pages/dashboardPage';
+import { AdminPage } from '../../src/pages/adminPage';
+import { UserManagementPage } from '../../src/pages/usermanagementPage';
 
 test.describe('User Management', () => {
   let userManagementPage: UserManagementPage;

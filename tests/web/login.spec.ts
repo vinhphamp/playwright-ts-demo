@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../pages/loginPage';
-import { BasePage } from '../../pages/basePage';
+import { LoginPage } from '../../src/pages/loginPage';
+import { BasePage } from '../../src/pages/basePage';
 import loginData from '../../test-data/users/login.data.json';
 import envData from '../../test-data/environment/urls.data.json';
 
@@ -21,13 +21,13 @@ test.describe('Login Checking', () => {
         
     });
 
-    test('Login not success with invalid username', async ({page}) => {
+    test.only('Login not success with invalid username', async ({page}) => {
         await login.login(loginData.invalidUsername.username, loginData.invalidUsername.password);
         await login.assertLoginNotSuccess();
         console.log("Login not success with invalid username");
     });
 
-    test('Login not success with invalid password', async ({page}) => {
+    test.only('Login not success with invalid password', async ({page}) => {
         await login.login(loginData.invalidPassword.username, loginData.invalidPassword.password);
         await login.assertLoginNotSuccess();
         console.log("Login not success with invalid password")

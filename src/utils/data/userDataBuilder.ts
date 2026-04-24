@@ -1,4 +1,4 @@
-import createUserData from '../../test-data/users/createuser.data.json';
+import createUserData from '../../../test-data/users/createuser.data.json';
 
 export function buildUser() {
     return {
