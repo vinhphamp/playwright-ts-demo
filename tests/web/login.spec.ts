@@ -21,13 +21,13 @@ test.describe('Login Checking', () => {
         
     });
 
-    test.only('Login not success with invalid username', async ({page}) => {
+    test('Login not success with invalid username', async ({page}) => {
         await login.login(loginData.invalidUsername.username, loginData.invalidUsername.password);
         await login.assertLoginNotSuccess();
         console.log("Login not success with invalid username");
     });
 
-    test.only('Login not success with invalid password', async ({page}) => {
+    test('Login not success with invalid password', async ({page}) => {
         await login.login(loginData.invalidPassword.username, loginData.invalidPassword.password);
         await login.assertLoginNotSuccess();
         console.log("Login not success with invalid password")
