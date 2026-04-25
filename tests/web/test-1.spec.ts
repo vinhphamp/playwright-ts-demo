@@ -17,4 +17,6 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Reset' }).click();
   await page.getByRole('button', { name: 'Search' }).click();
   await page.getByRole('button', { name: ' Add' }).click();
+
+  console.log("checking git with multi-branch") // happen in mac_codes branch
 });
