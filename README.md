@@ -37,24 +37,33 @@
    - Open in browser to view report
 
 
-### Git & GitHub Flow (Terminal):
+### Git & GitHub Standard Flow (Terminal):
 
-1. `git branch`
-   - Kiểm tra đang ở nhánh nào
+1. `git add .` then `git commit -m "your message"` then `git push origin mac_codes`
+   - Commit & push your code first to avoid losing any changes
 
-2. `git switch mac_codes`
-   - Switch sang nhánh mac_codes
+2. `git switch main`
+   - Must switch to main first before pulling
+   - If you stay on mac_codes and run `git pull origin main` -> main code will be pulled into mac_codes, not main branch
 
-3. `git add .`
+3. `git pull origin main`
+   - Pull latest code from main
 
-4. `git commit -m "your message"`
+4. `git switch mac_codes`
 
-5. `git push origin mac_codes`
+5. `git merge main`
+   - Ensures mac_codes has the latest code from main before creating PR
+   - Avoids conflicts occurring on GitHub after PR is created
+   - If teammates pushed to main before you -> mac_codes will be outdated
 
-6. `gh pr create --base main --head mac_codes --title "Title Text" --body "Body Text"`
-   - Tạo Pull Request
+6. Resolve conflict if any (skip if none)
+   - If conflict occurs after merge -> fix -> commit & push again:
+   - `git add .` then `git commit -m "resolve conflict"` then `git push origin mac_codes`
 
-7. `gh pr merge --merge`
-   - Tự merge PR (solo project)
-   - Chọn `Y` nếu muốn xóa branch mac_codes
+7. Option A - Team project (requires review & approval)
+   - `gh pr create --base main --head mac_codes --title "Title Text" --body "Body Text"`
+
+8. Option B - Solo project (merge immediately)
+   - `gh pr merge --merge`
+   - Choose `Y` if you want to delete mac_codes branch after merging
 
