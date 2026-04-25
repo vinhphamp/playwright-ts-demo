@@ -37,4 +37,24 @@
    - Open in browser to view report
 
 
+### Git & GitHub Flow (Terminal):
+
+1. `git branch`
+   - Kiểm tra đang ở nhánh nào
+
+2. `git switch mac_codes`
+   - Switch sang nhánh mac_codes
+
+3. `git add .`
+
+4. `git commit -m "your message"`
+
+5. `git push origin mac_codes`
+
+6. `gh pr create --base main --head mac_codes --title "Title Text" --body "Body Text"`
+   - Tạo Pull Request
+
+7. `gh pr merge --merge`
+   - Tự merge PR (solo project)
+   - Chọn `Y` nếu muốn xóa branch mac_codes
 
