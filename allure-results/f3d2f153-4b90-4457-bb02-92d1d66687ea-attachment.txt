@@ -1,2 +1,0 @@
-Load page successfully
-Login Successfully
