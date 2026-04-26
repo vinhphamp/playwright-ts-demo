@@ -2,6 +2,10 @@ import { Page, Locator, test, expect } from "@playwright/test";
 import { BasePage } from "./basePage";
 import creatUserData from "../../test-data/users/createuser.data.json";
 
+
+
+
+
 export type NewUserInfo = {
     userrole: string;
     userstatus: string;
