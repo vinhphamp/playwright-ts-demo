@@ -39,31 +39,31 @@
 
 ### Git & GitHub Standard Flow (Terminal):
 
-1. `git add .` then `git commit -m "your message"` then `git push origin mac_codes`
+1. `git add .` then `git commit -m "your message"` then `git push origin new_branch`
    - Commit & push your code first to avoid losing any changes
 
 2. `git switch main`
    - Must switch to main first before pulling
-   - If you stay on mac_codes and run `git pull origin main` -> main code will be pulled into mac_codes, not main branch
+   - If you stay on new_branch and run `git pull origin main` -> main code will be pulled into new_branch, not main branch
 
 3. `git pull origin main`
    - Pull latest code from main
 
-4. `git switch mac_codes`
+4. `git switch new_branch`
 
 5. `git merge main`
-   - Ensures mac_codes has the latest code from main before creating PR
+   - Ensures new_branch has the latest code from main before creating PR
    - Avoids conflicts occurring on GitHub after PR is created
-   - If teammates pushed to main before you -> mac_codes will be outdated
+   - If teammates pushed to main before you -> new_branch will be outdated
 
 6. Resolve conflict if any (skip if none)
    - If conflict occurs after merge -> fix -> commit & push again:
-   - `git add .` then `git commit -m "resolve conflict"` then `git push origin mac_codes`
+   - `git add .` then `git commit -m "resolve conflict"` then `git push origin new_branch`
 
 7. Option A - Team project (requires review & approval)
-   - `gh pr create --base main --head mac_codes --title "Title Text" --body "Body Text"`
+   - `gh pr create --base main --head new_branch --title "Title Text" --body "Body Text"`
 
 8. Option B - Solo project (merge immediately)
    - `gh pr merge --merge`
-   - Choose `Y` if you want to delete mac_codes branch after merging
+   - Choose `Y` if you want to delete new_branch branch after merging
 
