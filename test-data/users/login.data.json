@@ -18,6 +18,11 @@
         "username": "",
         "password": ""
 
+    },
+        "adminCredentials": {
+        "username": "Admin",
+        "password": "admin123"
+
     }
 
 
