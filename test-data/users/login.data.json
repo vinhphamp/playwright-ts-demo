@@ -20,7 +20,12 @@
 
     },
     
-     "adminAccount": {
+     "adminAccount1": {
+        "username": "",
+        "password": ""
+
+    },
+         "adminAccount2": {
         "username": "",
         "password": ""
 
