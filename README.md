@@ -77,17 +77,29 @@ git push -u origin new_branch
 ---
 
 ## 3. Keep your branch updated with the latest `main`
+### Option A:
 ```bash
 git switch main
 git pull origin main
 git switch new_branch
 git merge main
 ```
-
 - **Current branch:** `new_branch`
 - `git merge main` means: merge **local `main` into the current branch**.
 - This updates your feature branch with the latest changes from `main`.
 - Helps reduce conflicts before creating the PR.
+
+### Option B:
+```bash
+git fetch origin
+git log ..origin/main
+git merge origin/main
+```
+
+- **Current branch:** `new_branch`
+- `git merge origin/main` means: merge remote main directly into the current branch.
+- This updates your feature branch with the latest changes from the server.
+- Helps reduce conflicts and ensures you have the newest code before creating the PR.
 
 ---
 
@@ -136,6 +148,18 @@ gh pr merge --merge
 - Use this only if you want to merge from the terminal.
 - If your repo requires checks or review, GitHub may only allow merge after those pass.
 - You can also use `--squash` or `--rebase` if your team prefers a different merge style.
+
+- 1. Git Merge (Safe & Preserves History)
+How it works: Git creates a new "Merge Commit" that ties the history of the main branch and your feature branch together.
+Pros: It preserves the complete chronological history of the project. Looking at the Git graph, you can clearly see exactly when a branch started and when it was merged back.
+Cons: In large teams with many contributors, the Git graph can become cluttered (the "spider web" effect) due to numerous decorative merge commits.
+When to use: Use this when you prioritize safety and transparency, and when having a perfectly straight history line isn't a requirement.
+
+- 2. Git Rebase (Clean & Linear)
+How it works: It "lifts" all your new commits, updates the base of your feature branch to the latest main commit, and then "re-applies" your commits on top.
+Pros: Keeps a very clean, linear project history. There are no redundant merge commits like "Merge branch main into feature."
+Cons: It rewrites commit history (changes the commit hashes). If you rebase a branch that others are also working on, it will cause serious synchronization errors for their local machines.
+When to use: Use this when you are working alone on a branch and want your changes to appear neatly at the very top of the main branch.
 
 ---
 
