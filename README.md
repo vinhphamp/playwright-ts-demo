@@ -37,91 +37,166 @@
    - Open in browser to view report
 
 
-### Git & GitHub Standard Flow (Terminal):
+# Git & GitHub Standard Flow (Terminal)
 
-1. `git checkout -b new_branch`
-   - **Current branch:** `new_branch`
-   - Create a new branch from main to start your work
-   - Keeps your changes isolated from main
+## Core idea
+- Always do your work on a **feature branch** like `new_branch`, not directly on `main`.
+- `main` is the stable branch of the project.
+- Your feature branch is where you code, commit, test, update with latest `main`, and prepare a PR.
 
-2. `git add .` then `git commit -m "your message"` then `git push origin new_branch`
-   - **Current branch:** `new_branch`
-   - Commit & push your code first to avoid losing any changes
-   - Push to remote so your branch is available for PR
+---
 
-3. `git switch main`
-   - **Current branch:** `main`
-   - Must switch to main before pulling latest code
+## 1. Start from the latest `main`
+```bash
+git switch main
+git pull origin main
+git switch -c new_branch
+```
 
-4. `git pull origin main`
-   - **Current branch:** `main`
-   - Pull latest code from main (including teammates’ changes)
-   - Keep your local main up-to-date
+- **Current branch:** `new_branch`
+- Create a new branch from the latest `main`.
+- This keeps your work based on the newest code from the team.
+- `git switch -c` creates and switches to the new branch in one step.
 
-5. `git switch new_branch`
-   - **Current branch:** `new_branch`
-   - Go back to your working branch
+---
 
-6. `git merge main`
-   - **Current branch:** `new_branch`
-   - Merge latest main into your branch → `main → new_branch`
-   - Ensures your branch is up-to-date before creating PR
-   - Helps avoid conflicts during PR merge
+## 2. Work on your branch
+```bash
+git status
+git add .
+git commit -m "your message"
+git push -u origin new_branch
+```
 
-7. Resolve conflict if any (skip if none)
-   - **Current branch:** `new_branch`
-   - If conflict occurs after merge → fix → commit & push again:
-   - `git add .` then `git commit -m "resolve conflict"` then `git push origin new_branch`
-   - Ensures your branch is clean and ready for PR
+- **Current branch:** `new_branch`
+- `git status` checks what changed.
+- `git add .` stages your changes.
+- `git commit` saves a local snapshot.
+- `git push -u origin new_branch` uploads your branch to remote and sets upstream tracking.
 
-8. Option A - Team project (requires review & approval)
-   - `gh pr create --base main --head new_branch --title "Title Text" --body "Body Text"`
-   - **Current branch:** `new_branch` (or any)
-   - Create Pull Request for review before merging into main
+---
 
-9. Option B - Solo project (merge immediately)
-   - `gh pr merge --merge`
-   - **Current branch:** not required (handled on GitHub)
-   - Merge your branch into main directly
-   - Choose `Y` to delete `new_branch` after merge (if prompted)
+## 3. Keep your branch updated with the latest `main`
+```bash
+git switch main
+git pull origin main
+git switch new_branch
+git merge main
+```
 
-10. After merge (sync local main)
-   - `git switch main`
-   - `git pull origin main`
-   - **Current branch:** `main`
-   - Ensure your local main is up-to-date with remote after merge
-   - Important before starting new work
+- **Current branch:** `new_branch`
+- `git merge main` means: merge **local `main` into the current branch**.
+- This updates your feature branch with the latest changes from `main`.
+- Helps reduce conflicts before creating the PR.
 
-11. Delete branch manually (if not auto-deleted)
+---
 
-   - Delete local branch:
-     `git branch -d new_branch`
-     - **Current branch:** `main`
-     - Delete local branch after it has been merged
+## 4. Resolve conflict if needed
+```bash
+git status
+# fix conflicted files
+git add .
+git commit -m "resolve conflict"
+git push origin new_branch
+```
 
-   - Delete remote branch:
-     `git push origin --delete new_branch`
-     - **Current branch:** `main` (recommended)
-     - Remove branch from remote repository (GitHub/GitLab)
+- **Current branch:** `new_branch`
+- Only do this if Git reports a conflict.
+- After fixing, stage, commit, and push again.
 
-   - Why:
-     - Keep repository clean
-     - Avoid using outdated branches
-     - Follow good Git hygiene
+---
 
-### Important Rule:
+## 5. Create Pull Request
+```bash
+gh pr create --base main --head new_branch --title "Title Text" --body "Body Text"
+```
 
-- `git merge <branch_name>`
-  - Always means: merge from `<branch_name>` → into current branch
+- **Current branch:** `new_branch`
+- Creates a PR from `new_branch` into `main`.
+- Use this for team projects that need review and approval.
+- If you already created the PR once, you usually do **not** create it again; just keep pushing commits to the same branch.
 
+---
+
+## 6. Merge options
+
+### Option A: Merge on website
+- Open the PR on GitHub.
+- Review it.
+- Click **Merge** on the website.
+- In this option, you **do not need** to run `gh pr merge --merge`.
+
+### Option B: Merge on terminal
+```bash
+gh pr merge --merge
+```
+
+- **Current branch:** `new_branch` or any branch linked to the PR.
+- Merges the PR on GitHub using the normal merge strategy.
+- Use this only if you want to merge from the terminal.
+- If your repo requires checks or review, GitHub may only allow merge after those pass.
+- You can also use `--squash` or `--rebase` if your team prefers a different merge style.
+
+---
+
+## 7. Sync local `main` after merge
+```bash
+git switch main
+git pull origin main
+```
+
+- **Current branch:** `main`
+- Updates your local `main` to match the remote `main`.
+- Do this after the PR is merged.
+
+---
+
+## 8. Delete branch after merge
+```bash
+git branch -d new_branch
+git push origin --delete new_branch
+```
+
+- **Current branch:** `main`
+- `git branch -d` deletes the local branch after it has been merged.
+- `git push origin --delete` removes the remote branch.
+- This keeps the repo clean.
+
+---
+
+## Important rules
+
+### `git merge <branch_name>`
+- Always means: merge `<branch_name>` **into the current branch**.
 - Example:
-  - On `new_branch` → `git merge main` → `main → new_branch`
-  - On `main` → `git merge new_branch` → `new_branch → main`
+  - On `new_branch`:
+    ```bash
+    git merge main
+    ```
+    means `main -> new_branch`
+  - On `main`:
+    ```bash
+    git merge new_branch
+    ```
+    means `new_branch -> main`
 
-### Summary:
+### Recommended habit
+- Always check your branch before merging:
+  ```bash
+  git branch
+  ```
+- Always update local `main` before starting new work:
+  ```bash
+  git switch main
+  git pull origin main
+  ```
 
-- Always check current branch before merge
-- Update your branch with latest `main` before creating PR
-- Use PR flow for team collaboration instead of direct merge
-- Sync local main after merge (`switch main + pull`)
-- Delete branches after merge to keep repo clean
+---
+
+## Summary
+- Create your branch from the latest `main`.
+- Commit and push changes on your branch.
+- Pull latest `main`, then merge `main` into your branch.
+- Create PR from your branch to `main`.
+- Merge PR either on the website or on the terminal.
+- Sync local `main`, then delete the branch.
