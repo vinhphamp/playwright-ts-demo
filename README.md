@@ -229,8 +229,9 @@ git switch -c api-request
 ```
 
 ## 3. code changes
-## tạo/sửa file
-
+```bash
+tạo/sửa file
+```
 ## 4. kiểm tra changes
 ```bash
 git status
