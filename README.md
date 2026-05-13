@@ -216,6 +216,45 @@ git push origin --delete new_branch
   ```
 
 ---
+# Git Flow, Pull Request
+## 1. đang ở main, sync latest
+git switch main
+git pull origin main
+
+## 2. tạo branch mới
+git switch -c api-request
+
+## 3. code changes
+## tạo/sửa file
+
+## 4. kiểm tra changes
+git status
+
+## 5. add vào staging
+git add .
+
+## 6. commit
+git commit -m "add dummy file"
+
+## 7. push branch lên remote
+git push -u origin api-request
+
+## 8. tạo PR
+gh pr create --base main --head api-request --title "add dummy files" --body "add dummy_file.js"
+
+## 9. merge PR
+gh pr merge 1 --merge
+
+## 10. sync main local
+git switch main
+git pull origin main
+
+## 11. xoá branch local
+git branch -d api-request
+
+## 12. xoá branch remote
+git push origin --delete api-request
+---
 
 ## Summary
 - Create your branch from the latest `main`.
