@@ -1,0 +1,20 @@
+{
+  "success": {
+    "email": "eve.holt@reqres.in",
+    "password": "cityslicka"
+  },
+
+  "invalidPassword": {
+    "email": "eve.holt@reqres.in",
+    "password": "wrongpass"
+  },
+
+  "missingPassword": {
+    "email": "eve.holt@reqres.in"
+  },
+
+  "invalidEmail": {
+    "email": "abc@test.com",
+    "password": "cityslicka"
+  }
+}
