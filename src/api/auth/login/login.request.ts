@@ -1,9 +1,9 @@
 import { APIRequestContext } from "@playwright/test";
-import { loginEndpoint } from "../endpoints/loginEndpoint";
-import { loginHeader } from "../headers/loginHeader";
-import { buildLoginPayload } from '../payloads/loginPayloadBuilder';
+import { loginEndpoint } from '../login/login.endpoint';
+import { loginHeader } from '../login/login.header';
+import { buildLoginPayload } from '../login/login.payload';
 
-export class LoginService {
+export class LoginR {
     constructor(private request: APIRequestContext) {}
 
     async login(testCase: Parameters<typeof buildLoginPayload>[0]) {

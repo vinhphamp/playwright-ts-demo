@@ -1,7 +1,7 @@
 import { APIRequestContext } from "@playwright/test";
-import { createUserEndpoint } from '../endpoints/createUserEndpoint';
-import { createUserHeader } from "../headers/createUserHeader";
-import { buildCreateUserPayLoad } from "../payloads/createUserPayloadBuilder";
+import { createUserEndpoint } from '../create-user/create-user.endpoint';
+import { createUserHeader } from '../create-user/create-user.header';
+import { buildCreateUserPayLoad } from '../create-user/create-user.payload';
 
 export class CreateUserR {
     constructor(private request: APIRequestContext) {}

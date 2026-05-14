@@ -2,8 +2,8 @@ Status create user: 201
 Body to create user: {
   name: 'Phạm Phú Vinh',
   job: 'Quality Control Engineer',
-  id: '244',
-  createdAt: '2026-05-14T10:44:43.593Z',
+  id: '485',
+  createdAt: '2026-05-14T16:07:49.918Z',
   _meta: {
     powered_by: 'ReqRes',
     docs_url: 'https://app.reqres.in/documentation',

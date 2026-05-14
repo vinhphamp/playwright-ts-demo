@@ -1,25 +1,25 @@
 import { test, expect } from '@playwright/test';
-import { LoginService } from '../../src/api/services/loginRequest';
-import { ViewUserListR } from '../../src/api/services/viewUserListRequest';
-import { ViewUserDetailR } from '../../src/api/services/viewUserDetailRequest';
-import { CreateUserR } from '../../src/api/services/createUserRequest';
+import { LoginR } from '../../src/api/auth/login/login.request';
+import { ViewUserListR } from '../../src/api/users/view-user-list/view-user-list.request';
+import { ViewUserDetailR } from '../../src/api/users/view-user-detail/view-user-detail.request';
+import { CreateUserR } from '../../src/api/users/create-user/create-user.request';
 
 
 test.describe('User Management', () => {
-  let loginService: LoginService;
+  let loginService: LoginR;
   let viewUserList: ViewUserListR;
   let viewUserDetail: ViewUserDetailR;
-  let createUser: CreateUserR;
+  let createUser: CreateUserR; 
 
   test.beforeEach(({ request }) => {
-    loginService = new LoginService(request);
+    loginService = new LoginR(request);
     viewUserList = new ViewUserListR(request);
     viewUserDetail = new ViewUserDetailR(request);
     createUser = new CreateUserR(request);
 
   });
 
-  test.skip('get user list', async () => {
+  test('get user list', async () => {
     const res = await viewUserList.getUserList();
     const body = await res.json()
 
@@ -28,16 +28,7 @@ test.describe('User Management', () => {
 
   });
 
-    test.skip('get user detail', async () => {
-    const res = await viewUserDetail.getUserDetail(2);
-    const body = await res.json()
-
-    expect(res.status()).toBe(200);
-    console.log('View user detail:', body);
-
-  });
-
-  test.skip('should return 200 and token when login success', async () => {
+  test('should return 200 and token when login success', async () => {
     const res  = await loginService.login('success');
     const body = await res.json();
 
@@ -56,8 +47,18 @@ test.describe('User Management', () => {
     console.log('Body to create user:', body);
 
     expect(res.status()).toBe(201);
+
     
-  });  
+  });
+  
+  test('get user detail', async () => {
+    const res = await viewUserDetail.getUserDetail(2);
+    const body = await res.json()
+
+    expect(res.status()).toBe(200);
+    console.log('View user detail:', body);
+
+  });
 
   test.skip('should return 400 when wrong password', async () => {
     const res  = await loginService.login('invalidPassword');
@@ -69,10 +70,6 @@ test.describe('User Management', () => {
     expect(res.status()).toBe(200);
     
   });
-
-
-
-
 
 
 });
