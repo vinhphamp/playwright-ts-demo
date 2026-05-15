@@ -3,7 +3,7 @@ import { loginEndpoint } from '../login/login.endpoint';
 import { loginHeader } from '../login/login.header';
 import { buildLoginPayload } from '../login/login.payload';
 
-export class LoginR {
+export class LoginRequest {
     constructor(private request: APIRequestContext) {}
 
     async login(testCase: Parameters<typeof buildLoginPayload>[0]) {
