@@ -6,7 +6,7 @@
 
   "invalidPassword": {
     "email": "eve.holt@reqres.in",
-    "password": "wrongpass"
+    "password": "wrong_pass"
   },
 
   "missingPassword": {

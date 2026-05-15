@@ -1,26 +1,21 @@
 import { test, expect } from '@playwright/test';
-import { LoginR } from '../../src/api/auth/login/login.request';
-import { ViewUserListR } from '../../src/api/users/view-user-list/view-user-list.request';
-import { ViewUserDetailR } from '../../src/api/users/view-user-detail/view-user-detail.request';
-import { CreateUserR } from '../../src/api/users/create-user/create-user.request';
+import { LoginRequest } from '../../src/api/auth/login/login.request';
+import { UserService } from '../../src/api/users/user.service'
 
 
 test.describe('User Management', () => {
-  let loginService: LoginR;
-  let viewUserList: ViewUserListR;
-  let viewUserDetail: ViewUserDetailR;
-  let createUser: CreateUserR; 
+  let userService: UserService;
+  let loginService: LoginRequest;
 
   test.beforeEach(({ request }) => {
-    loginService = new LoginR(request);
-    viewUserList = new ViewUserListR(request);
-    viewUserDetail = new ViewUserDetailR(request);
-    createUser = new CreateUserR(request);
+    userService = new UserService(request);
+
+    loginService = new LoginRequest(request);
 
   });
 
-  test('get user list', async () => {
-    const res = await viewUserList.getUserList();
+  test('get user list', async () => { // success case for user list
+    const res = await userService.getUserList();
     const body = await res.json()
 
     expect(res.status()).toBe(200);
@@ -40,19 +35,18 @@ test.describe('User Management', () => {
   });
 
   test('create new user', async () => {
-    const res  = await createUser.createUser();
+    const res  = await userService.createUser();
     const body = await res.json();
 
     console.log('Status create user:', res.status());
     console.log('Body to create user:', body);
 
     expect(res.status()).toBe(201);
-
     
   });
   
   test('get user detail', async () => {
-    const res = await viewUserDetail.getUserDetail(2);
+    const res = await userService.getUserDetail(2);
     const body = await res.json()
 
     expect(res.status()).toBe(200);
@@ -60,14 +54,14 @@ test.describe('User Management', () => {
 
   });
 
-  test.skip('should return 400 when wrong password', async () => {
-    const res  = await loginService.login('invalidPassword');
+  test('should return 400 when wrong email', async () => {
+    const res  = await loginService.login('invalidEmail');
     const body = await res.json();
 
     console.log('Status login unsuccess:', res.status());
     console.log('Body login unsuccess:', body);
 
-    expect(res.status()).toBe(200);
+    expect(res.status()).toBe(400);
     
   });
 
