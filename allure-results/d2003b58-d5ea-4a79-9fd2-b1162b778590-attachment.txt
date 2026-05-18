@@ -1,2 +1,0 @@
-Status login unsuccess: 400
-Body login unsuccess: { error: 'user not found' }
