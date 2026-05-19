@@ -279,3 +279,14 @@ git push origin --delete api-request
 - Create PR from your branch to `main`.
 - Merge PR either on the website or on the terminal.
 - Sync local `main`, then delete the branch.
+
+
+```bash
+
+# Rules (locator syntax of CSS selector)
+- '.' -> class -> '.demo-frame'
+- '#' -> id -> #gallery
+- '[]' -> generic attribute -> [title="Delete"]
+- plain text -> tag -> div
+
+```
