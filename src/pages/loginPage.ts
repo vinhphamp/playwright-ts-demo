@@ -44,6 +44,12 @@ export class LoginPage {
         await expect(this.page).toHaveURL(/\/auth\/login$/, { timeout: 10_000 });
         await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
     }
+    
+    /**
+     * 
+     * @param username
+     * @param password 
+     */
 
     async login(username: string, password: string) {
         await this.usernameInput.fill(username);
