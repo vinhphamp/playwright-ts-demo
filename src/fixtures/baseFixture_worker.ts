@@ -1,7 +1,8 @@
 import { test as base, expect as baseExpect, Page } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
-import envData from '../test-data/environment/urls.data.json';
-import accData from '../test-data/users/login.data.json';
+import envData from '../../test-data/environment/urls.data.json';
+import accData from '../../test-data/users/login.data.json';
+
 import { DashboardPage } from '../pages/dashboardPage';
 
 type MyFixtures = {
