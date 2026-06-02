@@ -48,7 +48,7 @@ test.describe('User Management Module', () => {
         await createUser.verifyRequiredMessage();
 
         const newUser = buildUser();
-        console.log('generated username', newUser.username);
+        // console.log('generated username', newUser.username);
         await createUser.addInformationNewUser(newUser);
         await usermanagement.verifyUserManagementPageIsDisplayed();
         
