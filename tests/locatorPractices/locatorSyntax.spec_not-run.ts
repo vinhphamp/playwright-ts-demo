@@ -1,8 +1,8 @@
  import { test } from '@playwright/test';
 
  test.beforeEach(async({page}) => {
-    await page.goto('http://localhost:4200/')
-    await page.getByText('Form').click()
+    await page.goto('http://localhost:4200/') // Clone Test Application to D:\GitHub\pw-practice-app -> run command npm install --force (run first time for installing) -> run npm start 
+    await page.getByText('Forms', { exact: true }).click()
     await page.getByText('Form Layouts').click()
  })
 

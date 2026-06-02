@@ -23,7 +23,7 @@ export class BasePage {
         return await locator.innerText();
     }
 
-    static async isVisible(locator: Locator): Promise<void> { 
+    static async isVisible(locator: Locator, timeout = 10000): Promise<void> { 
         // example: return await BasePage.isVisible(this.adminLink);
         await expect(locator).toBeVisible();
     }

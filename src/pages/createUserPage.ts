@@ -3,9 +3,6 @@ import { BasePage } from "./basePage";
 import creatUserData from "../../test-data/users/createuser.data.json";
 
 
-
-
-
 export type NewUserInfo = {
     userrole: string;
     userstatus: string;
@@ -50,9 +47,7 @@ export class CreateUserPage {
     readonly confirmpasswordErrorMessage: Locator;
 
     readonly adduserText: Locator;
-    readonly saveButton: Locator;
-
-    
+    readonly saveButton: Locator;   
 
 
     constructor(page: Page) {
@@ -91,8 +86,7 @@ export class CreateUserPage {
 
         
         this.adduserText = page.getByText('Add User', { exact: true });
-        this.saveButton = page.getByRole('button', { name: "Save"});
-        
+        this.saveButton = page.getByRole('button', { name: "Save"});        
 
     }
 
