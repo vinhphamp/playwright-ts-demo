@@ -1,16 +1,11 @@
 name: Playwright Tests
 on:
-  # push:
-  #   branches: [ main, master ]
-
-  # pull_request:
-  #   branches: [ main, master ]
   workflow_dispatch:
   
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: ubuntu-22.04    
+    runs-on: ubuntu-22.04
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
@@ -25,11 +20,8 @@ jobs:
       with:
         path: ~/.cache/ms-playwright
         key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-    - name: Install system dependencies for Chromium
-      run: sudo apt-get update && sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2t64
-      timeout-minutes: 5
     - name: Install Playwright Browsers
-      run: npx playwright install chromium
+      run: npx playwright install --with-deps chromium
       timeout-minutes: 20
     - name: Run Playwright tests
       run: npx playwright test
