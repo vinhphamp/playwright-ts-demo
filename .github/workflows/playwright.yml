@@ -21,8 +21,13 @@ jobs:
         path: ~/.cache/ms-playwright
         key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps chromium
-      timeout-minutes: 20
+      run: |
+          mkdir -p ~/.cache/ms-playwright/chromium-1208/chrome-linux
+          wget -q "https://cdn.playwright.dev/builds/cft/145.0.7632.6/linux64/chrome-linux64.zip" -O /tmp/chrome.zip
+          unzip -q /tmp/chrome.zip -d /tmp/chrome-extracted
+          cp -r /tmp/chrome-extracted/chrome-linux64/* ~/.cache/ms-playwright/chromium-1208/chrome-linux/
+          chmod +x ~/.cache/ms-playwright/chromium-1208/chrome-linux/chrome
+      timeout-minutes: 10
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
