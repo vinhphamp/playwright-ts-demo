@@ -134,6 +134,10 @@ export class CreateUserPage {
         await this.passwordField.fill(userInfo.password);
         await this.confirmpasswordField.fill(userInfo.confirmpassword);
         await this.saveButton.click();  
+        await this.page.waitForURL(
+            '**/viewSystemUsers**', { 
+            timeout: 10_000 }
+        );        
     }
 
         

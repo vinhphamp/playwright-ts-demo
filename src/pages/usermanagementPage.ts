@@ -35,6 +35,8 @@ export class UserManagementPage {
     }
 
     async navigateToAddUserPage(){
+        await expect(this.page).toHaveURL(/viewSystemUsers/);
+        await BasePage.isVisible(this.addButton);
         await this.addButton.click();
     }
 
