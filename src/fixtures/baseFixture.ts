@@ -14,6 +14,7 @@ export const test = base.extend<MyFixtures>({
         const login = new LoginPage(page);
         await login.goto(envData.test.url);
         await login.login(accData.validUser.username, accData.validUser.password);
+        await page.waitForURL('**/dashboard/index', { timeout: 30000 });
         await use(page);
     }
 }); 
