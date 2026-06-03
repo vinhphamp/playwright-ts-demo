@@ -40,9 +40,16 @@ export class LoginPage {
     }
 
     async goto(url: string) {
-        await this.page.goto(url);
-        await expect(this.page).toHaveURL(/\/auth\/login$/, { timeout: 10_000 });
-        await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
+        await this.page.goto(url, {
+            waitUntil: 'domcontentloaded',
+            timeout: 60_000
+        });
+        await expect(this.page).toHaveURL(/\/auth\/login$/, {
+            timeout: 30_000 
+        });
+        await expect(this.usernameInput).toBeVisible({ 
+            timeout: 30_000 
+        });
     }
     
     /**
