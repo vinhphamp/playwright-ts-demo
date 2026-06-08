@@ -48,6 +48,20 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    
+    // ------------------- 
+    // Apply for using storageState
+    // { 
+    //   name: 'setup', 
+    //   testMatch: 'auth.setup.ts' },
+
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
+    //   dependencies: ['setup']
+    // },
+    // --------------------------
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
