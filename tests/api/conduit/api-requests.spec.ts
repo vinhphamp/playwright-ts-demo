@@ -94,8 +94,6 @@ test('delete article with BackEnd mode', async({ page, request }) => {
     await page.getByText('Global Feed').click()
     await expect(page.locator('app-article-list h1').first()).not.toContainText('This is test title with BackEnd mode')
 
-
-
 });
 
 
