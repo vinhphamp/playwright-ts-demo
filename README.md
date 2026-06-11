@@ -4,38 +4,74 @@
 
 ## Run commands
 
-### Codespaces environment: -> run one command 'npm run report:allure' (must configured with commands 'npm i -D http-server' -> 'npm i -D open' and package.json file (report:allure) )
+### macOS Local Environment
 
 1. `rm -rf allure-results allure-report`
 
+   * Remove previous Allure results and reports to ensure a clean execution.
+
 2. `npx playwright test --workers=2`
+
+   * Execute Playwright tests using 2 parallel workers and generate new Allure raw result files.
 
 3. `ALLURE_SINGLE_FILE=true npx allure generate ./allure-results -o ./allure-report --clean`
-   - Generate report dạng single-file
 
-4. `npm i -D http-server`
-   - Serve report bằng http-server (ổn cho Codespaces)
+   * Generate a fresh Allure report in single-file mode from the raw test results.
 
-5. `npx http-server ./allure-report -p 9333 -a 0.0.0.0`
-   - Open in browser to view report
-  
-### Window environment local:
-1. `rm -rf allure-results allure-report`
+4. `npx allure open allure-report`
+
+   * Start a temporary local web server and automatically open the Allure report in the browser.
+
+---
+
+### Windows (PowerShell) Local Environment
+
+1. `Remove-Item -Recurse -Force allure-results, allure-report`
+
+   * Remove previous Allure results and reports to ensure a clean execution.
 
 2. `npx playwright test --workers=2`
 
+   * Execute Playwright tests using 2 parallel workers and generate new Allure raw result files.
+
 3. `$env:ALLURE_SINGLE_FILE="true"`
-   - Create variable
+
+   * Create an environment variable to enable single-file Allure report generation.
 
 4. `npx allure generate ./allure-results -o ./allure-report --clean`
-   - Generate report dạng single-file
 
+   * Generate a fresh Allure report in single-file mode from the raw test results.
+
+5. `npx allure open allure-report`
+
+   * Start a temporary local web server and automatically open the Allure report in the browser.
+
+  
+### Window environment local:
+1. `Remove-Item -Recurse -Force allure-results, allure-report`
+   - Remove previous Allure raw results and generated reports to ensure a clean execution.
+
+2. `npx playwright test --workers=2`
+   - Execute Playwright tests using 2 parallel workers and generate new Allure result files.
+
+3. `$env:ALLURE_SINGLE_FILE="true"`
+   - Create an environment variable to enable single-file Allure report generation.
+
+4. `npx allure generate ./allure-results -o ./allure-report --clean`
+   - Generate a fresh Allure report in single-file mode from the raw test results.
+
+5. `npx allure open allure-report`
+   - Start a temporary local web server and automatically open the Allure report in the browser.
+
+Optional from step 4 above
 5. `npm i -D http-server`
-   - Serve report bằng http-server (ổn cho Codespaces)
+   - Install a lightweight HTTP server for hosting the generated report locally.
 
 6. `npx http-server ./allure-report -p 9333 -a 0.0.0.0`
-   - Open in browser to view report
-
+   - Start a web server and expose the report at port 9333.
+7. Open the following URL in your browser:
+   - http://localhost:9333
+   - View the generated Allure report through a dedicated local web server.
 
 # Git & GitHub Standard Flow (Terminal)
 

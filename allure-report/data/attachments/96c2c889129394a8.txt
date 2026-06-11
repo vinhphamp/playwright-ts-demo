@@ -1,2 +1,0 @@
-Load dashboard page successfully
-Navigate to Leave page successfully
