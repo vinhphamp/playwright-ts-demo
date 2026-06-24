@@ -371,6 +371,7 @@ git push origin --delete api-request
 - Create PR from your branch to `main`.
 - Merge PR either on the website or on the terminal.
 - Sync local `main`, then delete the branch.
+- Referent information to utilize the strength of playwright (https://software-testing-tutorials-automation.com/2026/04/playwright-typescript-tutorial.html)
 
 
 ```bash
