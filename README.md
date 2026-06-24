@@ -1,6 +1,46 @@
 # playwright-ts-demo
 
-# Generate Allure Report steps:
+# Install Allure Report steps: (https://allurereport.org/docs/v2/view-report/)
+
+## Run commands
+
+### macOS Local Environment
+
+1. `brew install allure`
+
+   * Install new allure report.
+
+2. `allure --version`
+
+   * Check latest version of installed allure report.
+
+3. `npm i -D playwright/test allure-playwright --force`
+
+   * Install from npm.
+
+4. Configure to add allure-playwright into playwright.config.ts
+
+   * reporter: [
+         ['line'],
+         ['html', { open: 'never' }],
+         ['allure-playwright', {
+         outputFolder: 'allure-results',  // thư mục kết quả thô cho Allure
+         detail: true,                    // log step chi tiết
+         suiteTitle: false                // không ép tiêu đề suite
+         }],
+      ],
+
+### Windows (PowerShell) Local Environment
+
+1. `scoop install allure`
+
+   * Install new allure report.
+
+2. `allure --version`
+
+   * Check latest version of installed allure report.
+
+# Generate Allure Report steps: (https://allurereport.org/docs/v2/view-report/)
 
 ## Run commands
 
