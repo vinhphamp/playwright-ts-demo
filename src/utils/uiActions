@@ -1,0 +1,455 @@
+import { expect, Locator, Page } from '@playwright/test';
+
+export class UIActions {
+
+    protected readonly page: Page;
+
+    constructor(page: Page) {
+        this.page = page;
+    }
+
+
+    // =========================================================
+    // ACTION METHODS
+    // =========================================================
+
+    /**
+     * Click an element.
+     *
+     * Example:
+     * await this.ui.click(this.loginButton);
+     *
+     * locator = this.loginButton
+     */
+    async click(locator: Locator): Promise<void> {
+        await locator.click();
+    }
+
+
+    /**
+     * Fill a value into an input field.
+     * Playwright fill() replaces the existing value automatically.
+     *
+     * Example:
+     * await this.ui.fill(this.usernameInput, 'admin');
+     *
+     * locator = this.usernameInput
+     * value   = 'admin'
+     */
+    async fill(
+        locator: Locator,
+        value: string
+    ): Promise<void> {
+        await locator.fill(value);
+    }
+
+
+    /**
+     * Clear the current value of an input field.
+     *
+     * Example:
+     * await this.ui.clear(this.usernameInput);
+     *
+     * locator = this.usernameInput
+     */
+    async clear(locator: Locator): Promise<void> {
+        await locator.clear();
+    }
+
+
+    /**
+     * Check a checkbox or radio button.
+     *
+     * Example:
+     * await this.ui.check(this.rememberMeCheckbox);
+     *
+     * locator = this.rememberMeCheckbox
+     */
+    async check(locator: Locator): Promise<void> {
+        await locator.check();
+    }
+
+
+    /**
+     * Uncheck a checkbox.
+     *
+     * Example:
+     * await this.ui.uncheck(this.rememberMeCheckbox);
+     *
+     * locator = this.rememberMeCheckbox
+     */
+    async uncheck(locator: Locator): Promise<void> {
+        await locator.uncheck();
+    }
+
+
+    /**
+     * Select an option from a native HTML <select> element.
+     *
+     * Example:
+     * await this.ui.select(this.roleDropdown, 'Admin');
+     *
+     * locator = this.roleDropdown
+     * value   = 'Admin'
+     */
+    async select(
+        locator: Locator,
+        value: string
+    ): Promise<void> {
+        await locator.selectOption(value);
+    }
+
+
+    // =========================================================
+    // GETTER METHODS
+    // =========================================================
+
+    /**
+     * Get visible text from an element.
+     *
+     * Example:
+     * const title = await this.ui.getText(this.pageTitle);
+     *
+     * locator = this.pageTitle
+     *
+     * Example result:
+     * title = 'User Management'
+     */
+    async getText(locator: Locator): Promise<string> {
+        await expect(locator).toBeVisible();
+
+        return await locator.innerText();
+    }
+
+
+    // =========================================================
+    // VERIFICATION / ASSERTION METHODS
+    // =========================================================
+
+    /**
+     * Verify that an element is visible.
+     *
+     * Example:
+     * await this.ui.verifyVisible(this.pageTitle);
+     *
+     * locator = this.pageTitle
+     */
+    async verifyVisible(locator: Locator): Promise<void> {
+        await expect(locator).toBeVisible();
+    }
+
+
+    /**
+     * Verify that an element is hidden.
+     *
+     * Example:
+     * await this.ui.verifyHidden(this.loadingSpinner);
+     *
+     * locator = this.loadingSpinner
+     */
+    async verifyHidden(locator: Locator): Promise<void> {
+        await expect(locator).toBeHidden();
+    }
+
+
+    /**
+     * Verify that an element is enabled.
+     *
+     * Example:
+     * await this.ui.verifyEnabled(this.saveButton);
+     *
+     * locator = this.saveButton
+     */
+    async verifyEnabled(locator: Locator): Promise<void> {
+        await expect(locator).toBeEnabled();
+    }
+
+
+    /**
+     * Verify that an element is disabled.
+     *
+     * Example:
+     * await this.ui.verifyDisabled(this.saveButton);
+     *
+     * locator = this.saveButton
+     */
+    async verifyDisabled(locator: Locator): Promise<void> {
+        await expect(locator).toBeDisabled();
+    }
+
+
+    /**
+     * Verify that an input field is editable.
+     *
+     * Example:
+     * await this.ui.verifyEditable(this.usernameInput);
+     *
+     * locator = this.usernameInput
+     */
+    async verifyEditable(locator: Locator): Promise<void> {
+        await expect(locator).toBeEditable();
+    }
+
+
+    /**
+     * Verify that a checkbox or radio button is checked.
+     *
+     * Example:
+     * await this.ui.verifyChecked(this.rememberMeCheckbox);
+     *
+     * locator = this.rememberMeCheckbox
+     */
+    async verifyChecked(locator: Locator): Promise<void> {
+        await expect(locator).toBeChecked();
+    }
+
+
+    /**
+     * Verify that a checkbox is not checked.
+     *
+     * Example:
+     * await this.ui.verifyUnchecked(this.rememberMeCheckbox);
+     *
+     * locator = this.rememberMeCheckbox
+     */
+    async verifyUnchecked(locator: Locator): Promise<void> {
+        await expect(locator).not.toBeChecked();
+    }
+
+
+    /**
+     * Verify the exact text of an element.
+     *
+     * Example:
+     * await this.ui.verifyText(
+     *     this.pageTitle,
+     *     'User Management'
+     * );
+     *
+     * locator      = this.pageTitle
+     * expectedText = 'User Management'
+     */
+    async verifyText(
+        locator: Locator,
+        expectedText: string
+    ): Promise<void> {
+        await expect(locator).toHaveText(expectedText);
+    }
+
+
+    /**
+     * Verify that an element contains the expected text.
+     *
+     * Example:
+     * await this.ui.verifyContainsText(
+     *     this.successMessage,
+     *     'Successfully'
+     * );
+     *
+     * locator      = this.successMessage
+     * expectedText = 'Successfully'
+     */
+    async verifyContainsText(
+        locator: Locator,
+        expectedText: string
+    ): Promise<void> {
+        await expect(locator).toContainText(expectedText);
+    }
+
+
+    /**
+     * Verify the current value of an input field.
+     *
+     * Example:
+     * await this.ui.verifyValue(
+     *     this.usernameInput,
+     *     'admin'
+     * );
+     *
+     * locator       = this.usernameInput
+     * expectedValue = 'admin'
+     */
+    async verifyValue(
+        locator: Locator,
+        expectedValue: string
+    ): Promise<void> {
+        await expect(locator).toHaveValue(expectedValue);
+    }
+
+
+    /**
+     * Verify the number of elements matching a locator.
+     *
+     * Example:
+     * await this.ui.verifyCount(
+     *     this.userRows,
+     *     5
+     * );
+     *
+     * locator       = this.userRows
+     * expectedCount = 5
+     */
+    async verifyCount(
+        locator: Locator,
+        expectedCount: number
+    ): Promise<void> {
+        await expect(locator).toHaveCount(expectedCount);
+    }
+}
+
+
+/*
+=================================================================
+SAMPLE: HOW TO USE UIActions IN A PAGE OBJECT
+=================================================================
+
+File example:
+src/pages/LoginPage.ts
+
+
+import { Locator, Page } from '@playwright/test';
+import { UIActions } from '../utils/UIActions';
+
+export class LoginPage {
+
+    private readonly page: Page;
+    private readonly ui: UIActions;
+
+    private readonly usernameInput: Locator;
+    private readonly passwordInput: Locator;
+    private readonly loginButton: Locator;
+
+
+    constructor(page: Page) {
+
+        this.page = page;
+
+        // Initialize UIActions
+        this.ui = new UIActions(page);
+
+        // Define locators
+        this.usernameInput =
+            page.getByPlaceholder('Username');
+
+        this.passwordInput =
+            page.getByPlaceholder('Password');
+
+        this.loginButton =
+            page.getByRole(
+                'button',
+                { name: 'Login' }
+            );
+    }
+
+
+    // Example:
+    // Use click() from UIActions
+    async clickLoginButton(): Promise<void> {
+
+        await this.ui.click(
+            this.loginButton
+        );
+    }
+
+
+    // Another example:
+    // Combine several UIActions inside Page Object business logic
+    async login(
+        username: string,
+        password: string
+    ): Promise<void> {
+
+        await this.ui.fill(
+            this.usernameInput,
+            username
+        );
+
+        await this.ui.fill(
+            this.passwordInput,
+            password
+        );
+
+        await this.ui.click(
+            this.loginButton
+        );
+    }
+}
+
+
+=================================================================
+ARCHITECTURE
+=================================================================
+
+Test
+  |
+  v
+Page Object
+  |
+  v
+UIActions
+  |
+  v
+Playwright
+
+
+Example:
+
+login.spec.ts
+
+        |
+        v
+
+LoginPage.login()
+
+        |
+        +--> UIActions.fill()
+        |
+        +--> UIActions.fill()
+        |
+        +--> UIActions.click()
+
+        |
+        v
+
+Playwright Locator API
+
+
+=================================================================
+IMPORTANT RULE
+=================================================================
+
+UIActions:
+    Generic reusable technical operations.
+
+    Examples:
+        click()
+        fill()
+        clear()
+        getText()
+        verifyVisible()
+        verifyText()
+
+
+Page Object:
+    Page-specific / business operations.
+
+    Examples:
+        login()
+        createUser()
+        searchUser()
+        navigateToAdminPage()
+        verifyLoginError()
+
+
+Test:
+    Test scenario / business validation.
+
+    Example:
+
+        await loginPage.login(
+            username,
+            password
+        );
+
+=================================================================
+*/
