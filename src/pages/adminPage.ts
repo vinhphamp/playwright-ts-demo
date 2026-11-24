@@ -92,7 +92,7 @@ export class AdminPage {
     */
    
     async navigateToOrganizationPage () {
-        this.organizationDropdown.click();
+        await this.organizationDropdown.click();
     }
 
 }
